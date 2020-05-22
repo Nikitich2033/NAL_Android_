@@ -4,7 +4,7 @@
     <string name="makeAppointment">Сделать запись</string>
     <string name="seeMyAppointments">Посмотреть мои записи</string>
     <string name="accountSettings">Настройки аккаунта</string>
-    <string name="foundsalonsbyname">Найденные Салоны</string>
+    <string name="founsalonsbyname">Найденные Салоны</string>
     <string name="workingHours">Посмотреть Часы Работы</string>
     <string name="sunday">Воскресенье</string>
     <string name="saturday">Суббота</string>
@@ -116,5 +116,5 @@
     <string name="app_logo">App Logo</string>
     <string name="future_appointments">Предстоящие приемы</string>
     <string name="appointments_history">История приемов</string>
-    <string name="joker">Добрый вечер брат</string>
+    <string name="kek">POPO</string>
 </resources>
