@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="showUserAppointments.SeeMyAppointments"
+    android:background="@color/darkBackground"
+
+    > <!-- Надо будет менять активность здесь-->
+    <!-- Надо будет менять названия айди-->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuidelineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticallGuidelineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <ImageView
+        android:id="@+id/logoHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuidelineTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/verticallGuidelineTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/item1"
+        android:onClick="onClickGoHome"
+
+        android:contentDescription="@string/app_logo" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+
+        app:layout_constraintBottom_toTopOf="@id/card2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoHome"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/cardview_dark_background"
+        android:onClick="onClickUpcoming_Appointments"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="PrivateResource">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:text="@string/future_appointments"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
+
+        <ImageView
+
+            android:id="@+id/imageView2"
+            android:layout_width="200sp"
+            android:layout_height="78dp"
+            android:layout_gravity='right'
+            android:layout_marginTop="200sp"
+            android:contentDescription="TODO"
+            android:onClick="onClickUpcoming_Appointments"
+            app:srcCompat="@android:drawable/ic_menu_send" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card1"
+
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/cardview_dark_background"
+        android:onClick="onClickPastAppointments"
+        app:layout_constraintVertical_bias="0.0"
+
+
+         >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:text="@string/appointments_history"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
+
+        <ImageView
+
+            android:id="@+id/imageView3"
+            android:layout_width="200sp"
+            android:layout_height="78dp"
+            android:layout_gravity='right'
+            android:layout_marginTop="200sp"
+            android:contentDescription="TODO"
+            app:srcCompat="@android:drawable/ic_menu_send" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

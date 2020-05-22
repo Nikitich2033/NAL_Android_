@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="makeAppointment.makeAppointmentByMainTags">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuidelineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticallGuidelineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <ImageView
+        android:id="@+id/logoHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuidelineTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/verticallGuidelineTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/item1"
+        android:onClick="onClickGoHome"/>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="pressTitle"
+        android:padding="10dp"
+        android:text="@string/findTreatmentTitle"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuidelineTitle"
+        app:layout_constraintEnd_toStartOf="@+id/verticallGuidelineTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/LVmaintags"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textFilterEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SVtreatments"
+        android:visibility="visible">
+    </ListView>
+
+    <ListView
+        android:id="@+id/LVallTreatemnts"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SVtreatments" />
+
+    <SearchView
+        android:id="@+id/SVtreatments"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Найти услугу"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontalGuidelineTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

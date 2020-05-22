@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name">NAL</string>
+    <string name="findTreatmentTitle">Найти услугу</string>
+    <string name="makeAppointment">Сделать запись</string>
+    <string name="seeMyAppointments">Посмотреть мои записи</string>
+    <string name="accountSettings">Настройки аккаунта</string>
+    <string name="founsalonsbyname">Найденные Салоны</string>
+    <string name="workingHours">Посмотреть Часы Работы</string>
+    <string name="sunday">Воскресенье</string>
+    <string name="saturday">Суббота</string>
+    <string name="friday">Пятница</string>
+    <string name="thursday">Четверг</string>
+    <string name="wednesday">Среда</string>
+    <string name="tuesday">Вторник</string>
+    <string name="monday">Понедельник</string>
+    <string name="chooseSalon">Выбрать Салон</string>
+    <string name="treatmentName">Название</string>
+    <string name="treatmentDuration">Длительность</string>
+    <string name="treatmentPrice">Цена</string>
+    <string name="Hair">Волосы</string>
+    <string name="HairOther">Другое</string>
+    <string name="BalayageOmbre">Балаяж и Омбре</string>
+    <string name="maleCut">Мужская стрижка</string>
+    <string name="HairColoring">Окрашивание волос и осветление прядей</string>
+    <string name="BlowDry">Выпрямление волос</string>
+    <string name="femaleCut">Женская стрижка</string>
+    <string name="face">Лицо</string>
+    <string name="eyelashextension">Наращивание ресниц</string>
+    <string name="eyebrowColoring">Окрашивание бровей и ресниц</string>
+    <string name="eyebrowThreading">Коррекция бровей пинцетом</string>
+    <string name="eyebrowWaxing">Коррекция бровей воском</string>
+    <string name="eyebrowLaminating">Ламинирование бровей</string>
+    <string name="facialClassic">Уход за лицом</string>
+    <string name="faceOther">Другое</string>
+    <string name="nails">Ногти</string>
+    <string name="body">Тело</string>
+    <string name="sprayTanning">Искусственный загар</string>
+    <string name="bodyScrab">Скрабирование тела</string>
+    <string name="bodyWrap">Обертывание</string>
+    <string name="colonicTherapy">Клизма-терапия</string>
+    <string name="cryolipolysis">Липосакция/коррекция фигуры</string>
+    <string name="anticellulite">Антицеллюлитные процедуры</string>
+    <string name="bodyOther">Другое</string>
+    <string name="pedicure">Педикюр</string>
+    <string name="manicure">Маникюр</string>
+    <string name="gelRemoval">Снятие лака/гель-лака</string>
+    <string name="gelManicure">Гель-лак + маникюр</string>
+    <string name="gelPedicure">Гель-лак + педекюр</string>
+    <string name="nailExtension">Наращивание ногтей</string>
+    <string name="nailOther">Другое</string>
+    <string name="hairRemoval">Удаление волос</string>
+    <string name="femaleWaxing">Женская восковая эпиляция</string>
+    <string name="hollywoodWaxing">Голливудская восковая эпиляция</string>
+    <string name="brazillianWaxing">Бразильская восковая эпиляция</string>
+    <string name="maleWaxing">Мужская восковая эпиляция</string>
+    <string name="laserRemoval">Лазерное удаление волос</string>
+    <string name="hairRemovalOther">Другое</string>
+    <string name="otherOther">Другое</string>
+    <string name="makeUP">Макияж</string>
+    <string name="findtreatment">Найти Услугу</string>
+    <string name="allsalons">Все Салоны</string>
+    <string name="findsalon">Найти Салон</string>
+    <string name="allSalons">Все Салоны</string>
+    <string-array name="treatments">
+        <item>Волосы</item>
+        <item>Лицо</item>
+        <item>Макияж</item>
+        <item>Ногти</item>
+        <item>Тело</item>
+        <item>Удаление волос</item>
+    </string-array>
+    <string-array name="hair">
+        <item>Женская стрижка</item>
+        <item>Выпрямление волос</item>
+        <item>Окрашивание волос и осветление прядей</item>
+        <item>Мужская стрижка</item>
+        <item>Балаяж и Омбре</item>
+        <item>Другое</item>
+    </string-array>
+    <string-array name="face">
+        <item>Наращивание ресниц</item>
+        <item>Окрашивание бровей и ресниц</item>
+        <item>Коррекция бровей пинцетом</item>
+        <item>Коррекция бровей воском</item>
+        <item>Ламинирование бровей</item>
+        <item>Уход за лицом</item>
+        <item>Другое</item>
+    </string-array>
+    <string-array name="nails">
+        <item>Педикюр</item>
+        <item>Маникюр</item>
+        <item>Снятие лака/гель-лака</item>
+        <item>Гель-лак + маникюр</item>
+        <item>Гель-лак + педекюр</item>
+        <item>Наращивание ногтей</item>
+        <item>Другое</item>
+    </string-array>
+    <string-array name="body">
+        <item>Искусственный загар</item>
+        <item>Скрабирование тела</item>
+        <item>Обертывание</item>
+        <item>Клизма-терапия</item>
+        <item>Липосакция/коррекция фигуры</item>
+        <item>Антицеллюлитные процедуры</item>
+        <item>Другое</item>
+    </string-array>
+    <string-array name="hairRemoval">
+        <item>Женская восковая эпиляция</item>
+        <item>Голливудская восковая эпиляция</item>
+        <item>Бразильская восковая эпиляция</item>
+        <item>Мужская восковая эпиляция</item>
+        <item>Лазерное удаление волос</item>
+        <item>Другое</item>
+    </string-array>
+
+    <string name="app_logo">App Logo</string>
+    <string name="future_appointments">Предстоящие приемы</string>
+    <string name="appointments_history">История приемов</string>
+
+</resources>

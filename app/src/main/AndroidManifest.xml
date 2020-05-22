@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nal">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="makeAppointment.allSalons"></activity>
+        <activity android:name="makeAppointment.makeAppointment" />
+        <activity android:name="makeAppointment.SalonOptions" />
+        <activity android:name="makeAppointment.allFilteredSalonsByTag" />
+        <activity android:name="makeAppointment.allFilteredSalonsByName" />
+        <activity android:name="makeAppointment.makeAppointmentBySubTags" />
+        <activity android:name="makeAppointment.makeAppointmentByMainTags" />
+        <activity android:name="showUserAppointments.PersonalAppointmentsList"/>
+        <activity android:name="showUserAppointments.SeeMyAppointments"/>
+
+
+
+        <activity android:name="home.home" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

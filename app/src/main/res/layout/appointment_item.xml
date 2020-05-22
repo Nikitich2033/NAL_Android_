@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    android:layout_margin="10dp"
+    >
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/SalonImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+        <TextView
+            android:id="@+id/AppointmentLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line 1"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/SalonImage"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/AppointmentFirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/AppointmentLastName"
+            android:layout_marginStart="3dp"
+
+            android:layout_toEndOf="@id/SalonImage"
+            android:text="First Name"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/AppointmentServiceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/AppointmentLastName"
+            android:text="Service Name"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/AppointmentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/AppointmentServiceName"
+            android:text="Service Name"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/AppointmentStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/AppointmentLastName"
+            android:layout_marginStart="10dp"
+
+            android:layout_toEndOf="@id/AppointmentFirstName"
+            android:text="Start Time"
+            android:textSize="18sp">
+
+        </TextView>
+        <TextView
+            android:id="@+id/AppointmentEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/AppointmentLastName"
+            android:layout_marginStart="10dp"
+
+            android:layout_toEndOf="@id/AppointmentStartTime"
+            android:text="End Time"
+            android:textSize="18sp">
+
+        </TextView>
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

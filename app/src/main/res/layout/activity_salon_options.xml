@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="makeAppointment.SalonOptions">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuidelineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticallGuidelineTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <ImageView
+        android:id="@+id/logoHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuidelineTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/verticallGuidelineTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/item1"
+        android:onClick="onClickGoHome"/>
+
+    <TextView
+        android:id="@+id/TVSalonName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuidelineTitle"
+        app:layout_constraintEnd_toStartOf="@+id/verticallGuidelineTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="138dp"
+        android:layout_height="102dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/mainSV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontalGuidelineTitle">
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutGroups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/hairTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Hair"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLHair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/femaleCutTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/femaleCut"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/femaleCutRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/BlowDryTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BlowDry"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/BlowDryRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/HairColoringTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/HairColoring"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/HairColoringRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/maleCutTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maleCut"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/maleCutRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/BalayageOmbreTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/BalayageOmbre"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/BalayageOmbreRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/HairOtherTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/HairOther"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/HairOtherRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/faceTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/face"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLFace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/eyelashextensionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eyelashextension"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eyelashextensionRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/eyebrowColoringTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eyebrowColoring"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eyebrowColoringRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/eyebrowThreadingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eyebrowThreading"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eyebrowThreadingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/eyebrowWaxingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eyebrowWaxing"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eyebrowWaxingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/eyebrowLaminatingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eyebrowLaminating"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/eyebrowLaminatingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/facialClassicTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/facialClassic"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/facialClassicRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/faceOtherTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/faceOther"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/faceOtherRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/makeUPTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/makeUP"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLmakeUP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/makeUPTV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/makeUP"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/makeUPRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/nailsTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nails"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLNails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pedicureTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pedicure"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/pedicureRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/manicureTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manicure"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/manicureRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/gelRemovalTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gelRemoval"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/gelRemovalRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/gelManicureTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gelManicure"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/gelManicureRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/gelPedicureTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gelPedicure"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/gelPedicureRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/nailExtensionTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nailExtension"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/nailExtensionRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/nailOtherTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nailOther"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/nailOtherRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bodyTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/body"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/sprayTanningTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sprayTanning"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sprayTanningRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/bodyScrabTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bodyScrab"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bodyScrabRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/bodyWrapTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bodyWrap"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bodyWrapRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/colonicTherapyTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/colonicTherapy"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/colonicTherapyRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/cryolipolysisTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cryolipolysis"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cryolipolysisRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/anticelluliteTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/anticellulite"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/anticelluliteRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/bodyOtherTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bodyOther"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bodyOtherRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/hairRemovalTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hairRemoval"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLhairRemoval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/femaleWaxingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/femaleWaxing"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/femaleWaxingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/hollywoodWaxingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hollywoodWaxing"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/hollywoodWaxingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/brazillianWaxingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brazillianWaxing"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/brazillianWaxingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/maleWaxingTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maleWaxing"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/maleWaxingRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/laserRemovalTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/laserRemoval"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/laserRemovalRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/hairRemovalOtherTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hairRemovalOther"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/hairRemovalOtherRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/otherOtherTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/otherOther"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/LLotherOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/otherOtherTV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/otherOther"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/otherOtherRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
