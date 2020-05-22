@@ -25,7 +25,7 @@ public class SeeMyAppointments extends AppCompatActivity {
         }
 
     }
-//seichas
+
 
     public void onClickGoHome(View view) {
         Intent intent = new Intent(getApplicationContext(), home.class);
