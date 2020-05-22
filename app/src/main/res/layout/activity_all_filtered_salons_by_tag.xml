@@ -46,7 +46,7 @@
         android:id="@+id/foundSalonsByTag"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/founsalonsbyname"
+        android:text="@string/foundsalonsbyname"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuidelineTitle"
