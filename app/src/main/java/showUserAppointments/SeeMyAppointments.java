@@ -25,7 +25,6 @@ public class SeeMyAppointments extends AppCompatActivity {
         }
 
     }
-    //obama huesos
 
     public void onClickGoHome(View view) {
         Intent intent = new Intent(getApplicationContext(), home.class);
