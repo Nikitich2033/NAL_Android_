@@ -1,4 +1,5 @@
 <resources>
+    <string name="jojo">kokko</string>
     <string name="app_name">NAL</string>
     <string name="findTreatmentTitle">Найти услугу</string>
     <string name="makeAppointment">Сделать запись</string>
