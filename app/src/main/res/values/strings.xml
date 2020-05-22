@@ -117,5 +117,6 @@
     <string name="app_logo">App Logo</string>
     <string name="future_appointments">Предстоящие приемы</string>
     <string name="appointments_history">История приемов</string>
+    <string name="gug">KEK</string>
     <string name="kek">POPO</string>
 </resources>
