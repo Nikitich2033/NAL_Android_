@@ -25,13 +25,12 @@ public class SeeMyAppointments extends AppCompatActivity {
         }
 
     }
-<<<<<<< Updated upstream
-//seichas
 
-=======
-//kek
-//sukaaaaa
->>>>>>> Stashed changes
+
+//kektest
+
+
+    
     public void onClickGoHome(View view) {
         Intent intent = new Intent(getApplicationContext(), home.class);
         startActivity(intent);
