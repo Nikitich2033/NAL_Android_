@@ -26,7 +26,7 @@ public class SeeMyAppointments extends AppCompatActivity {
 
     }
 
-
+//hello
     public void onClickGoHome(View view) {
         Intent intent = new Intent(getApplicationContext(), home.class);
         startActivity(intent);
