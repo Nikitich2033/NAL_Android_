@@ -25,10 +25,8 @@ public class SeeMyAppointments extends AppCompatActivity {
         }
 
     }
-//huytv
-    //obama
-    //trump
-    //kek
+
+
     public void onClickGoHome(View view) {
         Intent intent = new Intent(getApplicationContext(), home.class);
         startActivity(intent);
