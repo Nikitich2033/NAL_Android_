@@ -11,18 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="makeAppointment.allSalons"></activity>
+        <activity android:name="makeAppointment.chooseDateAndTime"
+            android:theme="@style/AppTheme.PopUp"/>
+        <activity android:name="makeAppointment.allSalons" />
         <activity android:name="makeAppointment.makeAppointment" />
         <activity android:name="makeAppointment.SalonOptions" />
         <activity android:name="makeAppointment.allFilteredSalonsByTag" />
         <activity android:name="makeAppointment.allFilteredSalonsByName" />
         <activity android:name="makeAppointment.makeAppointmentBySubTags" />
         <activity android:name="makeAppointment.makeAppointmentByMainTags" />
-        <activity android:name="showUserAppointments.PersonalAppointmentsList"/>
-        <activity android:name="showUserAppointments.SeeMyAppointments"/>
-
-
-
+        <activity android:name="showUserAppointments.PersonalAppointmentsList" />
+        <activity android:name="showUserAppointments.SeeMyAppointments" />
         <activity android:name="home.home" />
         <activity android:name=".MainActivity">
             <intent-filter>

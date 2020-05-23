@@ -1,8 +1,10 @@
 package makeAppointment;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,14 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
         holder.treatmentNameTV.setText(treatmentObject.getServiceName());
         holder.treatmentDurationTV.setText(String.valueOf(treatmentObject.getDurationMin()));
         holder.treatmentPriceTV.setText(String.valueOf(treatmentObject.getPrice()));
+        holder.chooseTreatment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(),chooseDateAndTime.class);
+                intent.putExtra("ServiceId",treatmentObject.getServiceId());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -43,11 +53,13 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
         private TextView treatmentNameTV;
         private TextView treatmentDurationTV;
         private TextView treatmentPriceTV;
+        private Button chooseTreatment;
         public treatmentsObjectHolder(@NonNull View itemView) {
             super(itemView);
             treatmentNameTV=itemView.findViewById(R.id.treatmentNameTV);
             treatmentDurationTV=itemView.findViewById(R.id.treatmentDurationTV);
             treatmentPriceTV=itemView.findViewById(R.id.treatmentPriceTV);
+            chooseTreatment=itemView.findViewById(R.id.chooseTreatment);
         }
     }
 }
