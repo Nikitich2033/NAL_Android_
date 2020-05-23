@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="makeAppointment.chooseDateAndTime"
-            android:theme="@style/AppTheme.PopUp"/>
+        <activity android:name="makeAppointment.checkMasters"/>
+        <activity
+            android:name="makeAppointment.chooseDateAndTime"
+            android:theme="@style/AppTheme.PopUp" />
         <activity android:name="makeAppointment.allSalons" />
         <activity android:name="makeAppointment.makeAppointment" />
         <activity android:name="makeAppointment.SalonOptions" />

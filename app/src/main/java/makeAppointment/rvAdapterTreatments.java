@@ -37,7 +37,7 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
         holder.chooseTreatment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(),chooseDateAndTime.class);
+                Intent intent=new Intent(v.getContext(),checkMasters.class);
                 intent.putExtra("ServiceId",treatmentObject.getServiceId());
                 v.getContext().startActivity(intent);
             }
