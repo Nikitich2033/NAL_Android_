@@ -9,20 +9,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.nal.R;
 
-import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class chooseDateAndTime extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     public static String ServiceId;
-    private TextView textView2;
+    private TextView chosenTimeTV;
+    private TextView chosenDateTV;
     private static int day;
     private static int month;
     private static int year;
@@ -41,9 +40,10 @@ public class chooseDateAndTime extends AppCompatActivity implements DatePickerDi
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width=dm.widthPixels;
         int height=dm.heightPixels;
-        getWindow().setLayout((int)(width*.9),(int)(height*.5));
+        getWindow().setLayout((int)(width*.9),(int)(height*.2));
 
-        textView2=findViewById(R.id.textView2);
+        chosenDateTV=findViewById(R.id.chosenDateTV);
+        chosenTimeTV=findViewById(R.id.chosenTimeTV);
         Intent intent=getIntent();
         ServiceId=intent.getStringExtra("ServiceId");
         this.year=Calendar.getInstance().get(Calendar.YEAR);
@@ -65,7 +65,8 @@ public class chooseDateAndTime extends AppCompatActivity implements DatePickerDi
         datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                textView2.setText(chooseDateAndTime.day+"/"+(chooseDateAndTime.month+1)+"/"+chooseDateAndTime.year+" "+chooseDateAndTime.hour+":"+chooseDateAndTime.minute);
+                chosenDateTV.setText(chooseDateAndTime.day+"/"+chooseDateAndTime.month+"/"+chooseDateAndTime.year);
+                chosenTimeTV.setText(chooseDateAndTime.hour+":"+chooseDateAndTime.minute);
             }
         });
         datePickerDialog.show();
@@ -85,7 +86,8 @@ public class chooseDateAndTime extends AppCompatActivity implements DatePickerDi
         timePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                textView2.setText(chooseDateAndTime.day+"/"+(chooseDateAndTime.month+1)+"/"+chooseDateAndTime.year+" "+chooseDateAndTime.hour+":"+chooseDateAndTime.minute);
+                chosenDateTV.setText(chooseDateAndTime.day+"/"+chooseDateAndTime.month+"/"+chooseDateAndTime.year);
+                chosenTimeTV.setText(chooseDateAndTime.hour+":"+chooseDateAndTime.minute);
             }
         });
         timePickerDialog.show();
@@ -97,7 +99,14 @@ public class chooseDateAndTime extends AppCompatActivity implements DatePickerDi
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         this.hour=hourOfDay;
         this.minute=minute;
-        textView2.setText(this.day+"/"+(this.month+1)+"/"+this.year+" "+this.hour+":"+this.minute);
+        chosenDateTV.setText(this.day+"/"+this.month+"/"+this.year);
+        chosenTimeTV.setText(this.hour+":"+this.minute);
     }
 
+    public void onClickCancel(View view) {
+        finish();
+    }
+
+    public void onClickFindMasters(View view) {
+    }
 }

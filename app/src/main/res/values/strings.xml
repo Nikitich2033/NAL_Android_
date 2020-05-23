@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">NAL</string>
+    <string name="chosenDate">Выбранная Дата</string>
+    <string name="chosenTime">Выбранное Время</string>
+    <string name="cancel">Отменить</string>
+    <string name="findFreeMasters">Найти Свободных Мастеров</string>
     <string name="findTreatmentTitle">Найти услугу</string>
     <string name="makeAppointment">Сделать запись</string>
     <string name="seeMyAppointments">Посмотреть мои записи</string>

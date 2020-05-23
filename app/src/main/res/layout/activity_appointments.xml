@@ -98,7 +98,7 @@
          >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/chooseDateTimeTV"
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:layout_marginTop="40dp"
