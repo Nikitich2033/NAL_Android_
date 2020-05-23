@@ -417,6 +417,32 @@ public class sqlInteractions {
         }
         return treatmentsObjects;
     }
+    public static ArrayList<String> getMasters(String SalonId,String ServiceId){
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial."+SalonId+"Masters where ServiceId=?;";
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            statement.setString(1,ServiceId);
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<String> result = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getString("MasterName"));
+            }
+            connection.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
 
 

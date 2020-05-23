@@ -21,7 +21,7 @@ import home.home;
 import mySQLInteractions.sqlInteractions;
 
 public class SalonOptions extends AppCompatActivity {
-    private static String SalonId;
+    public static String SalonId;
     private String SalonName;
     private ArrayList<String> TreatmentsIds=new ArrayList<>();
     private ArrayList<Treatment> treatmentsObjects=new ArrayList<>();
