@@ -16,9 +16,6 @@
         <activity
             android:name="makeAppointment.checkMasters"
             android:theme="@style/AppTheme.PopUp" />
-        <activity
-            android:name="makeAppointment.chooseDateAndTime"
-            android:theme="@style/AppTheme.PopUp" />
         <activity android:name="makeAppointment.allSalons" />
         <activity android:name="makeAppointment.makeAppointment" />
         <activity android:name="makeAppointment.SalonOptions" />
