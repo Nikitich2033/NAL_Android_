@@ -105,7 +105,7 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         this.day=dayOfMonth;
-        this.month=month;
+        this.month=month+1;
         this.year=year;
         Intent intent=new Intent(this,checkTimeAndChooseComplete.class);
         intent.putExtra("SalonId",SalonOptions.SalonId);

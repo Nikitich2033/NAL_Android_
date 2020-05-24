@@ -620,6 +620,41 @@ public class sqlInteractions {
         }
         return null;
     }
+    public static ArrayList<Time> getBlockedTimes(String SalonId,String ServiceId,String date,String MasterId) {
+        ArrayList<Time> blockedTimes = new ArrayList<>();
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial.Inter"+SalonId+"Appointments where ServiceId=? and Date=? and MasterId=? order by StartTime;";
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            statement.setString(1, ServiceId);
+            statement.setString(2, date);
+            statement.setString(3, MasterId);
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<Time> result = new ArrayList<>();
+            ArrayList<Time> result1 = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getTime("StartTime"));
+                result1.add(resultSet.getTime("EndTime"));
+            }
+            connection.close();
+            for (int i = 0; i < result.size(); i = i + 1) {
+               blockedTimes.add(result.get(i));
+               blockedTimes.add(result1.get(i));
+            }
+            return blockedTimes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
 
 

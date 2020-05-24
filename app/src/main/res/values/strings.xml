@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">NAL</string>
     <string name="chooseDateAndCheckMaster">Выбрать Дату и Посмотреть Время</string>
-    <string name="chosenDate">Выбранная Дата</string>
-    <string name="chosenTime">Выбранное Время</string>
+    <string name="BusyTime">Время Занятости Матсера</string>
+    <string name="chooseTime">Выбрать Время</string>
     <string name="cancel">Отменить</string>
     <string name="findFreeMasters">Найти Свободных Мастеров</string>
     <string name="findTreatmentTitle">Найти услугу</string>
