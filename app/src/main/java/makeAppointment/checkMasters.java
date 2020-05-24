@@ -6,7 +6,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,14 +30,19 @@ import makeAppointment.SalonOptions;
 import com.example.nal.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import mySQLInteractions.sqlInteractions;
 
-public class checkMasters extends AppCompatActivity {
+public class checkMasters extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private static String ServiceId;
     private ArrayList<Master> allMasters;
     private ListView LVMasters;
+    private static String MasterId;
     private ProgressBar progressBar6;
+    private static int day;
+    private static int month;
+    private static int year;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,9 @@ public class checkMasters extends AppCompatActivity {
         LVMasters=findViewById(R.id.LVMasters);
         progressBar6=findViewById(R.id.progressBar6);
         new getMastersAsync().execute();
+        this.year= Calendar.getInstance().get(Calendar.YEAR);
+        this.month=Calendar.getInstance().get(Calendar.MONTH);
+        this.day=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
     }
     class listviewmasterAdapter extends ArrayAdapter<Master> {
@@ -72,12 +84,32 @@ public class checkMasters extends AppCompatActivity {
             checkMasterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(),item.getMasterName()+item.getMasterId(),Toast.LENGTH_SHORT).show();
+                    MasterId=item.getMasterId();
+                    showDatePickerDialog();
                 }
             });
             return convertView;
         }
     }
+    private void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog=new DatePickerDialog(
+                this,
+                this,
+                this.year,
+                this.month,
+                this.day
+        );
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        this.day=dayOfMonth;
+        this.month=month;
+        this.year=year;
+        Toast.makeText(this,day+"/"+month+"/"+year+" "+MasterId+" "+ServiceId+" "+SalonOptions.SalonId,Toast.LENGTH_SHORT).show();
+    }
+
     class getMastersAsync extends AsyncTask<Void, Void,Void > {
 
         @Override
