@@ -24,7 +24,7 @@
             android:id="@+id/AppointmentLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line 1"
+            android:text="@string/last_name"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
             android:layout_marginStart="3dp"
 
             android:layout_toEndOf="@id/SalonImage"
-            android:text="First Name"
+            android:text="@string/first_name"
             android:textSize="18sp">
 
         </TextView>
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/AppointmentLastName"
-            android:text="Service Name"
+            android:text="@string/service_name"
             android:textSize="18sp">
 
         </TextView>
@@ -62,9 +62,10 @@
             android:id="@+id/AppointmentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/AppointmentServiceName"
-            android:text="Service Name"
+            android:layout_marginStart="11dp"
+            android:layout_below="@id/AppointmentServiceName"
+            android:layout_toEndOf="@id/AppointmentEndTime"
+            android:text="@string/service_date"
             android:textSize="18sp">
 
         </TextView>
@@ -77,7 +78,7 @@
             android:layout_marginStart="10dp"
 
             android:layout_toEndOf="@id/AppointmentFirstName"
-            android:text="Start Time"
+            android:text="@string/start_time"
             android:textSize="18sp">
 
         </TextView>
@@ -89,7 +90,7 @@
             android:layout_marginStart="10dp"
 
             android:layout_toEndOf="@id/AppointmentStartTime"
-            android:text="End Time"
+            android:text="@string/end_time"
             android:textSize="18sp">
 
         </TextView>

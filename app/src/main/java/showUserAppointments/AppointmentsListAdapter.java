@@ -60,7 +60,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
     public void onBindViewHolder(@NonNull AppointmentsViewHolder holder, int position) {
         AppointmentObject currentAppointment = AppointmentsList.get(position);
 
-        holder.SalonLogo.setImageResource(currentAppointment.getSalonLogo());
+        holder.SalonLogo.setImageResource(R.drawable.ic_subject);
         holder.FirstName.setText(currentAppointment.getUserFirst());
         holder.LastName.setText(currentAppointment.getUserLast());
         holder.ServiceName.setText(currentAppointment.getServiceName());
