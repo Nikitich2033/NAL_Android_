@@ -9,16 +9,22 @@ import java.util.Date;
 public class AppointmentObject {
 
     private int SalonLogo;
-    private String UserFirst;
-    private String UserMiddle;
-    private String UserLast;
-    private String ServiceName;
-    private String serviceDate;
-    private String serviceStartTime;
-    private String serviceEndTime;
+    public  String UserId;
+    public String SalonId;
+    public String ServiceId;
+    public String UserFirst;
+    public String UserMiddle;
+    public String UserLast;
+    public String ServiceName;
+    public String serviceDate;
+    public String serviceStartTime;
+    public String serviceEndTime;
 
-    public AppointmentObject(int salonLogo,String userFirst, String userMiddle, String userLast, String serviceName, String serviceDate, String serviceStartTime, String serviceEndTime) {
+    public AppointmentObject(int salonLogo,String UserId, String SalonID, String ServiceId, String userFirst, String userMiddle, String userLast, String serviceName, String serviceDate, String serviceStartTime, String serviceEndTime) {
         SalonLogo = salonLogo;
+        this.UserId = UserId;
+        SalonId = SalonID;
+        this.ServiceId = ServiceId;
         UserFirst = userFirst;
         UserMiddle = userMiddle;
         UserLast = userLast;
@@ -27,6 +33,10 @@ public class AppointmentObject {
         this.serviceStartTime = serviceStartTime;
         this.serviceEndTime = serviceEndTime;
     }
+
+    public String getUserId(){return UserId;}
+
+    public String getSalonId(){return SalonId;}
 
     public String getServiceDate() {
         return serviceDate;

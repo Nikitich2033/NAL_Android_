@@ -1,6 +1,8 @@
 package mySQLInteractions;
 import android.nfc.Tag;
+import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -13,9 +15,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 import makeAppointment.Treatment;
 import makeAppointment.salonObject;
+import showUserAppointments.AppointmentObject;
+
 
 public class sqlInteractions {
     public static void addUser(String Name, String secondName, String Surname, String eMail, String password, String Telephone){
@@ -124,6 +129,7 @@ public class sqlInteractions {
             }
         }
     }
+
     private static String getSHA256Hash(String data) {
         MessageDigest md = null;
         try {
@@ -137,6 +143,83 @@ public class sqlInteractions {
         String hex = String.format( "%064x", new BigInteger( 1, digest ) );
         return hex;
     }
+
+    public static ArrayList<AppointmentObject> getUserFutureAppointments(String UserName){
+
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_allSalons?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            System.out.println("First try");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("First try");
+            e.printStackTrace();
+        }
+
+        String sqlStatement1 = "SELECT alexandr_usersEnter.personalDetails.UserId, alexandr_usersEnter.personalDetails.Name,alexandr_usersEnter.personalDetails.Surname ,SalonId, ServiceId, date FROM alexandr_usersLog.allApointments,alexandr_usersEnter.personalDetails\n" +
+                "WHere alexandr_usersLog.allApointments.UserId = \"nikitalyakhovoy@gmail.com\" " +
+                "and cast(Current_timestamp as date) < date" +
+                "and alexandr_usersLog.allApointments.UserId = alexandr_usersEnter.personalDetails.UserId" +
+                ";";
+
+
+        ResultSet resultSet;
+        System.out.println("Before try");
+        try (PreparedStatement statement = connection.prepareStatement(sqlStatement1)) {
+           resultSet = statement.executeQuery();
+            ArrayList<AppointmentObject> appointments = new ArrayList<>();
+
+
+            while (resultSet.next()) {
+                AppointmentObject temp = new AppointmentObject(1,"","","","","","","","","","");
+                temp.UserId = resultSet.getString("UserId");
+                temp.SalonId = resultSet.getString("SalonId");
+                temp.ServiceId = resultSet.getString("ServiceId");
+                temp.serviceDate = resultSet.getString("serviceDate");
+                temp.UserFirst = resultSet.getString("Name");
+                temp.UserLast = resultSet.getString("Surname");
+
+                appointments.add(temp);
+
+            }
+
+
+            for (AppointmentObject appointment: appointments
+            ) {
+
+                String sqlStatement2= "SELECT StartTime,EndTime FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments " +
+                        "where ServiceId = "+ "\"" + appointment.ServiceId + "\" "+
+                        "And Date = " + "\"" + appointment.serviceDate + "\"" + ";";
+
+                    try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
+                        ResultSet resultSet1 = statement1.executeQuery();
+                        appointment.serviceStartTime = resultSet1.getString("StartTime");
+                        appointment.serviceEndTime = resultSet1.getString("EndTime");
+
+                    }
+                    catch (SQLException e) {
+                        System.out.println("Inside try");
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+            connection.close();
+            return appointments;
+        } catch (SQLException e) {
+            System.out.println("Second try");
+            e.printStackTrace();
+        }
+        return null;
+
+
+    }
+
+
     public static ArrayList<String> getTreatmentsNames(){
         Connection connection = null;
         try {

@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.ArrayList;
 
 import home.home;
+import mySQLInteractions.sqlInteractions;
+
 //jjjj
 public class PersonalAppointmentsList extends AppCompatActivity {
 
@@ -38,12 +40,10 @@ public class PersonalAppointmentsList extends AppCompatActivity {
         }
 
         ArrayList<AppointmentObject> appointmentList = new ArrayList<>();
-        appointmentList.add(new AppointmentObject(R.drawable.ic_subject,"Nikita",
-                "Дмитриевич","Ляховой",  "Стрижка уебан", "10/10/10","10:10","11:00"));
-        appointmentList.add(new AppointmentObject(R.drawable.ic_subject,"Nikita",
-                "Дмитриевич","Ляховой",  "Bimbo","23/13/14","10:10","11:00"));
-        appointmentList.add(new AppointmentObject(R.drawable.ic_subject,"Nikita",
-                "Дмитриевич","Ляховой",  "Cheeky Cunt", "12/12/20","10:10","11:00"));
+       String UserID = "nikitalyakhovoy@gmail.com";
+
+
+       appointmentList = sqlInteractions.getUserFutureAppointments(UserID);
 
         appointmentsRecyclerView = findViewById(R.id.AppointmentsRecycler);
         appointmentsRecyclerView.setHasFixedSize(true);
