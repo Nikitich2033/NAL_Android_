@@ -21,6 +21,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import home.home;
 import mySQLInteractions.sqlInteractions;
 
 public class checkTimeAndChooseComplete extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
@@ -31,9 +32,12 @@ public class checkTimeAndChooseComplete extends AppCompatActivity implements Tim
     private String checkDate;
     private ArrayList<Time> blockedTime;
     private ProgressBar progressBar7;
-    private String chosenTime;
+    private String chosenSatrtTime;
+    private String chosenEndTime;
     private int hour;
     private int minute;
+    private int treatmentDuration;
+    private String treatmentName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,8 @@ public class checkTimeAndChooseComplete extends AppCompatActivity implements Tim
         ServiceId=intent.getStringExtra("ServiceId");
         MasterId=intent.getStringExtra("MasterId");
         checkDate=intent.getStringExtra("checkDate");
+        treatmentDuration=intent.getIntExtra("treatmentDuration",0);
+        treatmentName=intent.getStringExtra("treatmentName");
         this.hour=Calendar.getInstance().get(Calendar.HOUR);
         this.minute=Calendar.getInstance().get(Calendar.MINUTE);
         new getBlockedTimessAsync().execute();
@@ -71,14 +77,39 @@ public class checkTimeAndChooseComplete extends AppCompatActivity implements Tim
                 this.minute,
                 true);
         timePickerDialog.show();
+        progressBar7.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         this.hour=hourOfDay;
         this.minute=minute;
-    }
+        chosenSatrtTime=this.hour+":"+this.minute+":"+"00";
+        Time time=new Time(this.hour,this.minute,0);
+        int temp=time.getMinutes()+treatmentDuration;
+        time.setMinutes(temp);
+        chosenEndTime=time.toString();
+        progressBar7.setVisibility(View.VISIBLE);
+        new makeAppointment().execute();
 
+    }
+    class makeAppointment extends AsyncTask<Void, Void,Void > {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+           sqlInteractions.addAppointment(SalonId,"nikitalyakhovoy@gmail.com",ServiceId,checkDate,chosenSatrtTime,chosenEndTime,MasterId);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressBar7.setVisibility(View.INVISIBLE);
+            Intent intent=new Intent(checkTimeAndChooseComplete.this, home.class);
+            startActivity(intent);
+
+        }
+    }
     class getBlockedTimessAsync extends AsyncTask<Void, Void,Void > {
 
         @Override

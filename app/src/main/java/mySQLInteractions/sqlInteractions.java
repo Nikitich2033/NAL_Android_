@@ -655,6 +655,50 @@ public class sqlInteractions {
         }
         return null;
     }
+    public static void addAppointment(String SalonId,String UserId,String ServiceId,String Date,
+                                      String StartTime,String EndTime,String MasterId){
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            String sqlStatement = "insert into alexandr_salonsSpecial.Inter"+SalonId+"Appointments(UserId,ServiceId,Date,StartTime,EndTime,MasterId)" +
+                    "values(\""+UserId+"\",\""+ServiceId+"\",\""+Date+"\",\""+StartTime+"\",\""+EndTime+"\",\""+MasterId+"\");";
+            statement.executeUpdate(sqlStatement);
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Connection connection2 = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection2 = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_usersLog?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Statement statement1 = null;
+        try {
+            statement1 = connection2.createStatement();
+            String sqlStatement1 = "insert into alexandr_usersLog.allApointments(UserId,SalonId,ServiceId,Date)" +
+                    "values(\""+UserId+"\",\""+SalonId+"\",\""+ServiceId+"\",\""+Date+"\");";
+            statement1.executeUpdate(sqlStatement1);
+            connection2.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

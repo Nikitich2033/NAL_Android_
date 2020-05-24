@@ -43,6 +43,8 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
     private static int day;
     private static int month;
     private static int year;
+    private static int treatmentDuration;
+    private static String treatmentName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +114,8 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("ServiceId",ServiceId);
         intent.putExtra("MasterId",MasterId);
         intent.putExtra("checkDate",String.valueOf(this.year+"-"+this.month+"-"+this.day));
+        intent.putExtra("treatmentDuration",treatmentDuration);
+        intent.putExtra("treatmentName",treatmentName);
         startActivity(intent);
     }
 
@@ -121,6 +125,8 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         protected Void doInBackground(Void... voids) {
             Intent intent=getIntent();
             ServiceId=intent.getStringExtra("ServiceId");
+            treatmentDuration=intent.getIntExtra("treatmentDuration",0);
+            treatmentName=intent.getStringExtra("treatmentName");
             allMasters=sqlInteractions.getMasters(SalonOptions.SalonId,ServiceId);
             return null;
         }

@@ -39,6 +39,8 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
             public void onClick(View v) {
                 Intent intent=new Intent(v.getContext(),checkMasters.class);
                 intent.putExtra("ServiceId",treatmentObject.getServiceId());
+                intent.putExtra("treatmentDuration",treatmentObject.getDurationMin());
+                intent.putExtra("treatmentName",treatmentObject.getServiceName());
                 v.getContext().startActivity(intent);
             }
         });
