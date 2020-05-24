@@ -63,17 +63,20 @@ public class checkMasters extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View listviewlayoutmaster=layoutInflater.inflate(R.layout.listviewlayoutmaster,parent,false);
-            TextView TVMasterName=listviewlayoutmaster.findViewById(R.id.TVMasterName);
+            if(convertView==null){
+                convertView=LayoutInflater.from(getContext()).inflate(R.layout.listviewlayoutmaster,parent,false);
+            }
+            TextView TVMasterName=convertView.findViewById(R.id.TVMasterName);
+            Button checkMasterButton=convertView.findViewById(R.id.checkMasterButton);
             TVMasterName.setText(allMasters.get(position));
-            return super.getView(position, convertView, parent);
+            checkMasterButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(),allMasters.get(position),Toast.LENGTH_SHORT).show();
+                }
+            });
+            return convertView;
         }
-
-    }
-    public class ViewHolder{
-        TextView TVMasterName;
-        Button checkMasterButton;
     }
     class getMastersAsync extends AsyncTask<Void, Void,Void > {
 
