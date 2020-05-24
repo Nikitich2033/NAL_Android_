@@ -107,7 +107,12 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         this.day=dayOfMonth;
         this.month=month;
         this.year=year;
-        Toast.makeText(this,day+"/"+month+"/"+year+" "+MasterId+" "+ServiceId+" "+SalonOptions.SalonId,Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this,checkTimeAndChooseComplete.class);
+        intent.putExtra("SalonId",SalonOptions.SalonId);
+        intent.putExtra("ServiceId",ServiceId);
+        intent.putExtra("MasterId",MasterId);
+        intent.putExtra("checkDate",String.valueOf(this.year+"-"+this.month+"-"+this.day));
+        startActivity(intent);
     }
 
     class getMastersAsync extends AsyncTask<Void, Void,Void > {
