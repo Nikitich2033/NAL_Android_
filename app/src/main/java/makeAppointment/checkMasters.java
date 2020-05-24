@@ -93,8 +93,6 @@ public class checkMasters extends AppCompatActivity {
             final listviewmasterAdapter listviewmasterAdapter=new listviewmasterAdapter(checkMasters.this,allMasters);
             LVMasters.setAdapter(listviewmasterAdapter);
             super.onPostExecute(aVoid);
-            Log.i("lolo",allMasters.get(1).getMasterName()+allMasters.get(1).getMasterId());
-            Log.i("lolo",allMasters.get(0).getMasterName()+allMasters.get(0).getMasterId());
             progressBar6.setVisibility(View.INVISIBLE);
 
         }
