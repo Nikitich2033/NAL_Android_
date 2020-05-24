@@ -29,6 +29,8 @@ public class makeAppointment extends AppCompatActivity {
     }
 
     public void onClickFindSalon(View view) {
+        Intent intent=new Intent(this,mappedSalons.class);
+        startActivity(intent);
     }
 
     public void onClickAllSalons(View view) {
