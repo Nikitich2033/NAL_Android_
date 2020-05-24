@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ import mySQLInteractions.sqlInteractions;
 
 public class checkMasters extends AppCompatActivity {
     private static String ServiceId;
-    private ArrayList<String> allMasters;
+    private ArrayList<Master> allMasters;
     private ListView LVMasters;
     private ProgressBar progressBar6;
     @Override
@@ -51,28 +52,27 @@ public class checkMasters extends AppCompatActivity {
         new getMastersAsync().execute();
 
     }
-    class listviewmasterAdapter extends ArrayAdapter<String> {
+    class listviewmasterAdapter extends ArrayAdapter<Master> {
         Context context;
-        ArrayList<String> allMasters;
-        listviewmasterAdapter(Context context,ArrayList<String> allMasters){
+        listviewmasterAdapter(Context context,ArrayList<Master> allMasters){
             super(context, R.layout.listviewlayoutmaster,R.id.TVMasterName,allMasters);
             this.context=context;
-            this.allMasters=allMasters;
         }
 
         @NonNull
         @Override
         public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            final Master item=getItem(position);
             if(convertView==null){
                 convertView=LayoutInflater.from(getContext()).inflate(R.layout.listviewlayoutmaster,parent,false);
             }
             TextView TVMasterName=convertView.findViewById(R.id.TVMasterName);
             Button checkMasterButton=convertView.findViewById(R.id.checkMasterButton);
-            TVMasterName.setText(allMasters.get(position));
+            TVMasterName.setText(item.getMasterName());
             checkMasterButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(),allMasters.get(position),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),item.getMasterName()+item.getMasterId(),Toast.LENGTH_SHORT).show();
                 }
             });
             return convertView;
@@ -93,6 +93,8 @@ public class checkMasters extends AppCompatActivity {
             final listviewmasterAdapter listviewmasterAdapter=new listviewmasterAdapter(checkMasters.this,allMasters);
             LVMasters.setAdapter(listviewmasterAdapter);
             super.onPostExecute(aVoid);
+            Log.i("lolo",allMasters.get(1).getMasterName()+allMasters.get(1).getMasterId());
+            Log.i("lolo",allMasters.get(0).getMasterName()+allMasters.get(0).getMasterId());
             progressBar6.setVisibility(View.INVISIBLE);
 
         }

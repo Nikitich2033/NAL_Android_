@@ -17,6 +17,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import makeAppointment.Master;
 import makeAppointment.Treatment;
 import makeAppointment.salonObject;
 import showUserAppointments.AppointmentObject;
@@ -586,7 +587,8 @@ public class sqlInteractions {
         }
         return treatmentsObjects;
     }
-    public static ArrayList<String> getMasters(String SalonId,String ServiceId){
+    public static ArrayList<Master> getMasters(String SalonId,String ServiceId) {
+        ArrayList<Master> masters = new ArrayList<>();
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -597,16 +599,22 @@ public class sqlInteractions {
             e.printStackTrace();
         }
 
-        String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial."+SalonId+"Masters where ServiceId=?;";
+        String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial." + SalonId + "Masters where ServiceId=?;";
         try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
-            statement.setString(1,ServiceId);
+            statement.setString(1, ServiceId);
             ResultSet resultSet = statement.executeQuery();
             ArrayList<String> result = new ArrayList<>();
+            ArrayList<String> result1 = new ArrayList<>();
             while (resultSet.next()) {
                 result.add(resultSet.getString("MasterName"));
+                result1.add(resultSet.getString("MasterId"));
             }
             connection.close();
-            return result;
+            for (int i = 0; i < result.size(); i = i + 1) {
+                Master master = new Master(result1.get(i), result.get(i));
+                masters.add(master);
+            }
+            return masters;
         } catch (SQLException e) {
             e.printStackTrace();
         }
