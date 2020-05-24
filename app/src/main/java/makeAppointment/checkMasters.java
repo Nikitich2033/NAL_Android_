@@ -15,9 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import makeAppointment.SalonOptions;
 import com.example.nal.R;
 
@@ -52,20 +55,25 @@ public class checkMasters extends AppCompatActivity {
         Context context;
         ArrayList<String> allMasters;
         listviewmasterAdapter(Context context,ArrayList<String> allMasters){
-            super(context,R.layout.listviewlayoutmaster,R.id.TVMasterName,allMasters);
+            super(context, R.layout.listviewlayoutmaster,R.id.TVMasterName,allMasters);
             this.context=context;
             this.allMasters=allMasters;
         }
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View listviewlayoutmaster=layoutInflater.inflate(R.layout.listviewlayoutmaster,parent,false);
             TextView TVMasterName=listviewlayoutmaster.findViewById(R.id.TVMasterName);
             TVMasterName.setText(allMasters.get(position));
             return super.getView(position, convertView, parent);
         }
+
+    }
+    public class ViewHolder{
+        TextView TVMasterName;
+        Button checkMasterButton;
     }
     class getMastersAsync extends AsyncTask<Void, Void,Void > {
 
