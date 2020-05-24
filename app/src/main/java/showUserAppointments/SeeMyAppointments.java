@@ -1,5 +1,5 @@
 package showUserAppointments;
-//jasef
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ public class SeeMyAppointments extends AppCompatActivity {
 
     }
 
-//hello
+
     public void onClickGoHome(View view) {
         Intent intent = new Intent(getApplicationContext(), home.class);
         startActivity(intent);
@@ -42,6 +42,6 @@ public class SeeMyAppointments extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), PersonalAppointmentsList.class);
         startActivity(intent);
     }
-    //0999
+
 }
-//777
+
