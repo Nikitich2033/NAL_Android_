@@ -29,6 +29,7 @@ public class PersonalAppointmentsList extends AppCompatActivity {
     private ArrayList<AppointmentObject> appointmentList;
     private String UserID = "nikitalyakhovoy@gmail.com";
     private ProgressBar progressBar1;
+    private int timeValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +65,13 @@ public class PersonalAppointmentsList extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             Intent intent=getIntent();
-
-            appointmentList =sqlInteractions.getUserFutureAppointments(UserID);
+            timeValue = intent.getIntExtra("timeValue",2);
+            if (timeValue == 0) {
+                appointmentList = sqlInteractions.getUserFutureAppointments(UserID);
+            }
+            else if (timeValue == 1){
+                appointmentList = sqlInteractions.getUserPastAppointments(UserID);
+            }
             return null;
         }
 

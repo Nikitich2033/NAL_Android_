@@ -34,12 +34,14 @@ public class SeeMyAppointments extends AppCompatActivity {
 
     public void onClickUpcoming_Appointments(View view) {
         Intent intent = new Intent(getApplicationContext(), PersonalAppointmentsList.class);
+        intent.putExtra("timeValue",0);
         startActivity(intent);
 
     }
 
     public void onClickPastAppointments(View view) {
         Intent intent = new Intent(getApplicationContext(), PersonalAppointmentsList.class);
+        intent.putExtra("timeValue",1);
         startActivity(intent);
     }
 
