@@ -76,7 +76,7 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public boolean onMarkerClick(Marker marker) {
                 chosenSalon=hm.get(marker);
-                Intent intent=new Intent(getApplicationContext(),showMapedSalon.class);
+                Intent intent=new Intent(getApplicationContext(),showMappedSalon.class);
                 startActivity(intent);
                 return false;
             }
