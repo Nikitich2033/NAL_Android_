@@ -1,5 +1,6 @@
 package makeAppointment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -20,9 +21,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.*;
+import Constants.Constants;
+
+import static Constants.Constants.MAPVIEW_BUNDLE_KEY;
 
 public class mappedSalons extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap SalonsMap;
+    private MapView myMapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,28 +36,65 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
         if(actionBar!=null){
             actionBar.hide();
         }
-        SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.myMap);
-        mapFragment.getMapAsync(mappedSalons.this);
+        Bundle mapViewBundle=null;
+        if (savedInstanceState != null) {
+            mapViewBundle=savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+        }
+        myMapView=(MapView) findViewById(R.id.myMapView);
+        myMapView.onCreate(mapViewBundle);
+        myMapView.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        SalonsMap=googleMap;
-        LatLng salon1=new LatLng(55.969712, -3.306804);
-        SalonsMap.addMarker(new MarkerOptions().position(salon1).title("My Salon")
-        .icon(bitmapDescriptor(getApplicationContext(),R.drawable.ic_flag_black_24dp)));
-
-        SalonsMap.moveCamera(CameraUpdateFactory.newLatLng(salon1));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(55.969702, -3.306365)).title("MyFucningSalon"));
     }
 
-    private BitmapDescriptor bitmapDescriptor(Context context,int vectorResId){
-        Drawable vectorDrawable= ContextCompat.getDrawable(context,vectorResId);
-        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),
-                vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap=Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
-                vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
-        Canvas canvas=new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Bundle mapViewBundle=outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        if(mapViewBundle==null){
+            mapViewBundle=new Bundle();
+            outState.putBundle(MAPVIEW_BUNDLE_KEY,mapViewBundle);
+        }
+        myMapView.onSaveInstanceState(mapViewBundle);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        myMapView.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        myMapView.onResume();
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        myMapView.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        myMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        myMapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        myMapView.onLowMemory();
     }
 }

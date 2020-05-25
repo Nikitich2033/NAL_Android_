@@ -77,7 +77,7 @@ public class checkTimeAndChooseComplete extends AppCompatActivity implements Tim
                 this.minute,
                 true);
         timePickerDialog.show();
-        progressBar7.setVisibility(View.VISIBLE);
+       // progressBar7.setVisibility(View.VISIBLE);
     }
 
     @Override
