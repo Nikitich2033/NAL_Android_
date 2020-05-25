@@ -63,9 +63,7 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         for(int i=0;i<allSalonsToMap.size();i=i+1){
-            Log.i("lolo",String.valueOf(allSalonsToMap.get(i).getLat())+String.valueOf(allSalonsToMap.get(i).getLan())+String.valueOf(allSalonsToMap.get(i).getName()));
             googleMap.addMarker(new MarkerOptions().position(new LatLng(allSalonsToMap.get(i).getLat(), allSalonsToMap.get(i).getLan())).title(allSalonsToMap.get(i).getName()));
-
         }
     }
 
