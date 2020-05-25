@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="makeAppointment.showMapedSalon"
-            android:theme="@style/AppTheme.PopUp"></activity>
         <activity android:name="makeAppointment.mappedSalons" />
 
         <meta-data
