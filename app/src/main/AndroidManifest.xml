@@ -11,8 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="makeAppointment.mappedSalons"></activity>
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAtTZuGFkIvZBwUrFIWtiTEZu-Fh0K0Z28"/>
+        <activity android:name="makeAppointment.showMapedSalon"></activity>
+        <activity android:name="makeAppointment.mappedSalons" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAtTZuGFkIvZBwUrFIWtiTEZu-Fh0K0Z28" />
+
         <activity
             android:name="makeAppointment.checkTimeAndChooseComplete"
             android:theme="@style/AppTheme.PopUp" />

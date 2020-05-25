@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.nal.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,24 +26,29 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Constants.Constants;
 import home.home;
 import mySQLInteractions.sqlInteractions;
 
 import static Constants.Constants.MAPVIEW_BUNDLE_KEY;
+import static com.google.android.gms.maps.GoogleMap.*;
 
-public class mappedSalons extends AppCompatActivity implements OnMapReadyCallback {
+public class mappedSalons extends AppCompatActivity implements OnMapReadyCallback  {
     private GoogleMap SalonsMap;
     private MapView myMapView;
     private static ArrayList<String> SalonIds;
     private static ArrayList<salonObject> allSalonsToMap;
+    private HashMap<Marker,salonObject> hm=new HashMap<>();
     private ProgressBar progressBar10;
     private Bundle mapViewBundle=null;
+    public static salonObject chosenSalon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +69,18 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         for(int i=0;i<allSalonsToMap.size();i=i+1){
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(allSalonsToMap.get(i).getLat(), allSalonsToMap.get(i).getLan())).title(allSalonsToMap.get(i).getName()));
+            Marker marker=googleMap.addMarker(new MarkerOptions().position(new LatLng(allSalonsToMap.get(i).getLat(), allSalonsToMap.get(i).getLan())).title(allSalonsToMap.get(i).getName()));
+            hm.put(marker,allSalonsToMap.get(i));
         }
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                chosenSalon=hm.get(marker);
+                Intent intent=new Intent(getApplicationContext(),showMapedSalon.class);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     class getIDsAsyncAndObjects extends AsyncTask<Void, Void,Void > {
