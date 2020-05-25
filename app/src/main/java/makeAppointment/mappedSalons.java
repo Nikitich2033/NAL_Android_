@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.nal.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.*;
 import Constants.Constants;
+import home.home;
 
 import static Constants.Constants.MAPVIEW_BUNDLE_KEY;
 
@@ -47,7 +50,7 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(55.969702, -3.306365)).title("MyFucningSalon"));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(55.96970200, -3.30636500)).title("MyFucningSalon"));
     }
 
     @Override
@@ -96,5 +99,10 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
     public void onLowMemory() {
         super.onLowMemory();
         myMapView.onLowMemory();
+    }
+
+    public void onClickHome(View view) {
+        Intent intent=new Intent(this, home.class);
+        startActivity(intent);
     }
 }

@@ -16,7 +16,31 @@ public class salonObject {
     private String eMail;
     private String tel1;
     private String tel2;
+    private double Lat;
+    private double Lan;
     private ArrayList<Time> openTimes;
+
+    public double getLat() {
+        return Lat;
+    }
+
+    public double getLan() {
+        return Lan;
+    }
+
+    public salonObject(String salonId, String name, String adressLine1, String adressLine2, String eMail, String tel1, String tel2, double lat, double lan, ArrayList<Time> openTimes) {
+        SalonId = salonId;
+        this.name = name;
+        this.adressLine1 = adressLine1;
+        this.adressLine2 = adressLine2;
+        this.eMail = eMail;
+        this.tel1 = tel1;
+        this.tel2 = tel2;
+        Lat = lat;
+        Lan = lan;
+        this.openTimes = openTimes;
+    }
+
 
     public salonObject(String SalonId,String name,String adressLine1,String adressLine2,String eMail,String tel1,String tel2,ArrayList<Time> openTimes){
         this.SalonId=SalonId;
