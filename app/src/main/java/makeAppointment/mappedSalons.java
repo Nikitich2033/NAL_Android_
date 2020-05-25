@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.*;
 
 public class mappedSalons extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap SalonsMap;
@@ -30,7 +31,7 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
         if(actionBar!=null){
             actionBar.hide();
         }
-        SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapViewSalons);
+        SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.myMap);
         mapFragment.getMapAsync(mappedSalons.this);
     }
 
