@@ -1,6 +1,7 @@
 package mySQLInteractions;
 import android.nfc.Tag;
-import android.util.Log;
+
+import com.mysql.jdbc.log.Log;
 
 import java.lang.reflect.Array;
 import java.math.BigInteger;
@@ -697,6 +698,114 @@ public class sqlInteractions {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public static ArrayList<salonObject> getMapObjectsSalon(ArrayList<String> SalonIds){
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_allSalons?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ArrayList<salonObject> salons=new ArrayList<>();
+        for(int i=0;i<SalonIds.size();i=i+1) {
+            String SalonId=SalonIds.get(i);
+            String name = "";
+            String adressLine1 = "";
+            String adressLine2 = "";
+            String eMail = "";
+            String tel1 = "";
+            String tel2 = "";
+            double Lat = 0;
+            double Lan = 0;
+            ArrayList<Time> openTimes = new ArrayList<>();
+
+            String sqlSatatement = "SELECT * FROM alexandr_allSalons.SalonDetails where SalonId=?;";
+            try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+                statement.setString(1, SalonId);
+                ResultSet resultSet = statement.executeQuery();
+                ArrayList<String> result1 = new ArrayList<>();
+                ArrayList<String> result2 = new ArrayList<>();
+                ArrayList<String> result3 = new ArrayList<>();
+                ArrayList<String> result4 = new ArrayList<>();
+                ArrayList<String> result5 = new ArrayList<>();
+                ArrayList<String> result6 = new ArrayList<>();
+                ArrayList<Time> result7 = new ArrayList<>();
+                ArrayList<Time> result8 = new ArrayList<>();
+                ArrayList<Time> result9 = new ArrayList<>();
+                ArrayList<Time> result10 = new ArrayList<>();
+                ArrayList<Time> result11= new ArrayList<>();
+                ArrayList<Time> result12 = new ArrayList<>();
+                ArrayList<Time> result13 = new ArrayList<>();
+                ArrayList<Time> result14 = new ArrayList<>();
+                ArrayList<Time> result15 = new ArrayList<>();
+                ArrayList<Time> result16 = new ArrayList<>();
+                ArrayList<Time> result17 = new ArrayList<>();
+                ArrayList<Time> result18 = new ArrayList<>();
+                ArrayList<Time> result19 = new ArrayList<>();
+                ArrayList<Time> result20 = new ArrayList<>();
+                ArrayList<Double> result21 = new ArrayList<>();
+                ArrayList<Double> result22 = new ArrayList<>();
+                while (resultSet.next()) {
+                    result1.add(resultSet.getString("name"));
+                    result2.add(resultSet.getString("addressLine1"));
+                    result3.add(resultSet.getString("addressLine2"));
+                    result4.add(resultSet.getString("eMail"));
+                    result5.add(resultSet.getString("tel1"));
+                    result6.add(resultSet.getString("tel2"));
+                    result7.add(resultSet.getTime("mondayStart"));
+                    result8.add(resultSet.getTime("mondayEnd"));
+                    result9.add(resultSet.getTime("tuesdayStart"));
+                    result10.add(resultSet.getTime("tuesdayEnd"));
+                    result11.add(resultSet.getTime("wednesdayStart"));
+                    result12.add(resultSet.getTime("wednesdayEnd"));
+                    result13.add(resultSet.getTime("thursdayStart"));
+                    result14.add(resultSet.getTime("thursdayEnd"));
+                    result15.add(resultSet.getTime("fridayStart"));
+                    result16.add(resultSet.getTime("fridayEnd"));
+                    result17.add(resultSet.getTime("saturdayStart"));
+                    result18.add(resultSet.getTime("saturdayEnd"));
+                    result19.add(resultSet.getTime("sundayStart"));
+                    result20.add(resultSet.getTime("sundayEnd"));
+                    result21.add(resultSet.getDouble("Lat"));
+                    result22.add(resultSet.getDouble("Lan"));
+                }
+                name = result1.get(0);
+                adressLine1 = result2.get(0);
+                adressLine2 = result3.get(0);
+                eMail = result4.get(0);
+                tel1 = result5.get(0);
+                tel2 = result6.get(0);
+                openTimes.add(result7.get(0));
+                openTimes.add(result8.get(0));
+                openTimes.add(result9.get(0));
+                openTimes.add(result10.get(0));
+                openTimes.add(result11.get(0));
+                openTimes.add(result12.get(0));
+                openTimes.add(result13.get(0));
+                openTimes.add(result14.get(0));
+                openTimes.add(result15.get(0));
+                openTimes.add(result16.get(0));
+                openTimes.add(result17.get(0));
+                openTimes.add(result18.get(0));
+                openTimes.add(result19.get(0));
+                openTimes.add(result20.get(0));
+                Lat=result21.get(0);
+                Lan=result22.get(0);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            salons.add(new salonObject(SalonId,name,adressLine1,adressLine2,eMail,tel1,tel2,Lat,Lan,openTimes));
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return salons;
     }
 
 }

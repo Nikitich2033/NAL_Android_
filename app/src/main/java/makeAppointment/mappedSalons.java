@@ -4,14 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.nal.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,14 +27,22 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.*;
+
+import java.util.ArrayList;
+
 import Constants.Constants;
 import home.home;
+import mySQLInteractions.sqlInteractions;
 
 import static Constants.Constants.MAPVIEW_BUNDLE_KEY;
 
 public class mappedSalons extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap SalonsMap;
     private MapView myMapView;
+    private static ArrayList<String> SalonIds;
+    private static ArrayList<salonObject> allSalonsToMap;
+    private ProgressBar progressBar10;
+    private Bundle mapViewBundle=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,19 +51,45 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
         if(actionBar!=null){
             actionBar.hide();
         }
-        Bundle mapViewBundle=null;
+        progressBar10=findViewById(R.id.progressBar10);
+        myMapView=(MapView) findViewById(R.id.myMapView);
         if (savedInstanceState != null) {
             mapViewBundle=savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
-        myMapView=(MapView) findViewById(R.id.myMapView);
         myMapView.onCreate(mapViewBundle);
-        myMapView.getMapAsync(this);
+        new getIDsAsyncAndObjects().execute();
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(55.96970200, -3.30636500)).title("MyFucningSalon"));
+        for(int i=0;i<allSalonsToMap.size();i=i+1){
+            Log.i("lolo",String.valueOf(allSalonsToMap.get(i).getLat())+String.valueOf(allSalonsToMap.get(i).getLan())+String.valueOf(allSalonsToMap.get(i).getName()));
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(allSalonsToMap.get(i).getLat(), allSalonsToMap.get(i).getLan())).title(allSalonsToMap.get(i).getName()));
+
+        }
     }
+
+    class getIDsAsyncAndObjects extends AsyncTask<Void, Void,Void > {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            SalonIds= sqlInteractions.getSalonIds();
+            allSalonsToMap=sqlInteractions.getMapObjectsSalon(SalonIds);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressBar10.setVisibility(View.INVISIBLE);
+            myMapView.setVisibility(View.VISIBLE);
+
+            myMapView.getMapAsync(mappedSalons.this);
+
+        }
+    }
+
+
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
