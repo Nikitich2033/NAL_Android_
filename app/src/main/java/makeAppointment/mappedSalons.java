@@ -30,8 +30,8 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
         if(actionBar!=null){
             actionBar.hide();
         }
-       // SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
-       // mapFragment.getMapAsync(mappedSalons.this);
+        SupportMapFragment mapFragment=(SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapViewSalons);
+        mapFragment.getMapAsync(mappedSalons.this);
     }
 
     @Override
