@@ -161,10 +161,10 @@ public class sqlInteractions {
             e.printStackTrace();
         }
 
-        String sqlStatement1 = "SELECT alexandr_usersEnter.personalDetails.UserId, alexandr_usersEnter.personalDetails.Name,alexandr_usersEnter.personalDetails.Surname ,SalonId, ServiceId, date \n" +
+        String sqlStatement1 = "SELECT SalonId, ServiceId, date \n" +
                 "FROM alexandr_usersLog.allApointments,alexandr_usersEnter.personalDetails\n" +
                 "Where alexandr_usersLog.allApointments.UserId =" + "\"" + UserName + "\"" +
-                "and cast(Current_timestamp as date) < date \n" +
+                "and cast(Current_timestamp as date) <= date \n" +
                 "and alexandr_usersLog.allApointments.UserId = alexandr_usersEnter.personalDetails.UserId;";
 
 
@@ -178,13 +178,13 @@ public class sqlInteractions {
 
 
             while (resultSet.next()) {
-                AppointmentObject temp = new AppointmentObject(1,"","","","","","","","","","");
-                temp.UserId = resultSet.getString("UserId");
+                AppointmentObject temp = new AppointmentObject(1,"","","","",
+                        "","","","","","","","","");
+
                 temp.SalonId = resultSet.getString("SalonId");
                 temp.ServiceId = resultSet.getString("ServiceId");
                 temp.serviceDate = resultSet.getString("date");
-                temp.UserFirst = resultSet.getString("Name");
-                temp.UserLast = resultSet.getString("Surname");
+
 
                 appointments.add(temp);
 
@@ -194,10 +194,11 @@ public class sqlInteractions {
             for (AppointmentObject appointment: appointments
             ) {
 
-                String sqlStatement2= "SELECT StartTime,EndTime,ServiceName FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers " +
-                        "where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\" "+
-                        "And Date = " + "\"" + appointment.serviceDate + "\"" +
-                        "and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
+                String sqlStatement2= "SELECT StartTime,EndTime,ServiceName,MasterName FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
+                        " where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\""+
+                        " And Date = " + "\"" + appointment.serviceDate + "\""  +
+                        " and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
+                        " and alexandr_salonsSpecial.Inter" +appointment.SalonId+"Appointments.MasterId = alexandr_salonsSpecial."+appointment.SalonId+"Masters.MasterId" +
                         ";";
 
                     try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
@@ -206,6 +207,9 @@ public class sqlInteractions {
                         appointment.serviceStartTime = resultSet1.getString("StartTime");
                         appointment.serviceEndTime = resultSet1.getString("EndTime");
                         appointment.ServiceName = resultSet1.getString("ServiceName");
+                        String TempMasterName =  resultSet1.getString("MasterName");
+                        appointment.MasterFirst = TempMasterName.split(" ")[0];
+                        appointment.MasterLast = TempMasterName.split(" ")[1];
 
                     }
                     catch (SQLException e) {
@@ -242,7 +246,7 @@ public class sqlInteractions {
             e.printStackTrace();
         }
 
-        String sqlStatement1 = "SELECT alexandr_usersEnter.personalDetails.UserId, alexandr_usersEnter.personalDetails.Name,alexandr_usersEnter.personalDetails.Surname ,SalonId, ServiceId, date \n" +
+        String sqlStatement1 = "SELECT SalonId, ServiceId, date \n" +
                 "FROM alexandr_usersLog.allApointments,alexandr_usersEnter.personalDetails\n" +
                 "Where alexandr_usersLog.allApointments.UserId =" + "\"" + UserName + "\"" +
                 "and cast(Current_timestamp as date) > date \n" +
@@ -259,13 +263,13 @@ public class sqlInteractions {
 
 
             while (resultSet.next()) {
-                AppointmentObject temp = new AppointmentObject(1,"","","","","","","","","","");
-                temp.UserId = resultSet.getString("UserId");
+                AppointmentObject temp = new AppointmentObject(1,"","","","",
+                        "","","","","","","","","");
+
                 temp.SalonId = resultSet.getString("SalonId");
                 temp.ServiceId = resultSet.getString("ServiceId");
                 temp.serviceDate = resultSet.getString("date");
-                temp.UserFirst = resultSet.getString("Name");
-                temp.UserLast = resultSet.getString("Surname");
+
 
                 appointments.add(temp);
 
@@ -275,10 +279,11 @@ public class sqlInteractions {
             for (AppointmentObject appointment: appointments
             ) {
 
-                String sqlStatement2= "SELECT StartTime,EndTime,ServiceName FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers " +
-                        "where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\" "+
-                        "And Date = " + "\"" + appointment.serviceDate + "\"" +
-                        "and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
+                String sqlStatement2= "SELECT StartTime,EndTime,ServiceName,MasterName FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
+                        " where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\""+
+                        " And Date = " + "\"" + appointment.serviceDate + "\""  +
+                        " and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
+                        " and alexandr_salonsSpecial.Inter" +appointment.SalonId+"Appointments.MasterId = alexandr_salonsSpecial."+appointment.SalonId+"Masters.MasterId" +
                         ";";
 
                 try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
@@ -287,6 +292,9 @@ public class sqlInteractions {
                     appointment.serviceStartTime = resultSet1.getString("StartTime");
                     appointment.serviceEndTime = resultSet1.getString("EndTime");
                     appointment.ServiceName = resultSet1.getString("ServiceName");
+                    String TempMasterName =  resultSet1.getString("MasterName");
+                    appointment.MasterFirst = TempMasterName.split(" ")[0];
+                    appointment.MasterLast = TempMasterName.split(" ")[1];
 
                 }
                 catch (SQLException e) {
@@ -304,6 +312,7 @@ public class sqlInteractions {
             e.printStackTrace();
         }
         return null;
+
 
 
     }

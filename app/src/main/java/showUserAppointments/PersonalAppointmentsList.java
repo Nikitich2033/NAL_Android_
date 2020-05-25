@@ -52,7 +52,6 @@ public class PersonalAppointmentsList extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         new getUserFutureApAsync().execute();
-        Log.i("koko","llll");
     }
 
     @Override

@@ -21,7 +21,7 @@
         </androidx.appcompat.widget.AppCompatImageView>
 
         <TextView
-            android:id="@+id/AppointmentLastName"
+            android:id="@+id/MasterLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/last_name"
@@ -35,10 +35,10 @@
         </TextView>
 
         <TextView
-            android:id="@+id/AppointmentFirstName"
+            android:id="@+id/MasterFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/AppointmentLastName"
+            android:layout_below="@+id/MasterLastName"
             android:layout_marginStart="3dp"
 
             android:layout_toEndOf="@id/SalonImage"
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/AppointmentLastName"
+            android:layout_toEndOf="@id/MasterLastName"
             android:text="@string/service_name"
             android:textSize="18sp">
 
@@ -74,10 +74,10 @@
             android:id="@+id/AppointmentStartTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/AppointmentLastName"
+            android:layout_below="@+id/MasterLastName"
             android:layout_marginStart="10dp"
 
-            android:layout_toEndOf="@id/AppointmentFirstName"
+            android:layout_toEndOf="@id/MasterFirstName"
             android:text="@string/start_time"
             android:textSize="18sp">
 
@@ -86,7 +86,7 @@
             android:id="@+id/AppointmentEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/AppointmentLastName"
+            android:layout_below="@+id/MasterLastName"
             android:layout_marginStart="10dp"
 
             android:layout_toEndOf="@id/AppointmentStartTime"

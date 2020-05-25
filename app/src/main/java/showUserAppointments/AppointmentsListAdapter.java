@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nal.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsListAdapter.AppointmentsViewHolder> {
@@ -21,8 +19,8 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
 
     public static class AppointmentsViewHolder extends RecyclerView.ViewHolder{
         public ImageView SalonLogo;
-        public TextView FirstName;
-        public TextView LastName;
+        public TextView MasterFirst;
+        public TextView MasterLast;
         public TextView ServiceName;
         public TextView Date;
         public TextView StartTime;
@@ -32,8 +30,8 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         public AppointmentsViewHolder(@NonNull View itemView) {
             super(itemView);
             SalonLogo= itemView.findViewById(R.id.SalonImage);
-            FirstName = itemView.findViewById(R.id.AppointmentFirstName);
-            LastName = itemView.findViewById(R.id.AppointmentLastName);
+            MasterFirst = itemView.findViewById(R.id.MasterFirstName);
+            MasterLast = itemView.findViewById(R.id.MasterLastName);
             ServiceName = itemView.findViewById(R.id.AppointmentServiceName);
             Date = itemView.findViewById(R.id.AppointmentDate);
             StartTime = itemView.findViewById(R.id.AppointmentStartTime);
@@ -61,8 +59,8 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         AppointmentObject currentAppointment = AppointmentsList.get(position);
 
         holder.SalonLogo.setImageResource(R.drawable.ic_subject);
-        holder.FirstName.setText(currentAppointment.getUserFirst());
-        holder.LastName.setText(currentAppointment.getUserLast());
+        holder.MasterFirst.setText(currentAppointment.getMasterFirst());
+        holder.MasterLast.setText(currentAppointment.getMasterLast());
         holder.ServiceName.setText(currentAppointment.getServiceName());
         holder.Date.setText(currentAppointment.getServiceDate());
         holder.StartTime.setText(currentAppointment.getServiceStartTime());
