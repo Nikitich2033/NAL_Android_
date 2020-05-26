@@ -104,7 +104,7 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
             hm.put(marker,allSalonsToMap.get(i));
         }
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,5));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
         googleMap.addMarker(myLocation);
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
