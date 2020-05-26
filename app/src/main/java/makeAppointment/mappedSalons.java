@@ -97,9 +97,10 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         LatLng latLng=new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
-        MarkerOptions myLocation=new MarkerOptions().position(latLng).title("Вы Здесь");
+        MarkerOptions myLocation=new MarkerOptions().position(latLng).title("Вы Здесь").icon(bitmapDescriptor(getApplicationContext(),R.drawable.ic_person_black_24dp));
         for(int i=0;i<allSalonsToMap.size();i=i+1){
-            Marker marker=googleMap.addMarker(new MarkerOptions().position(new LatLng(allSalonsToMap.get(i).getLat(), allSalonsToMap.get(i).getLan())).title(allSalonsToMap.get(i).getName()));
+            Marker marker=googleMap.addMarker(new MarkerOptions().position(new LatLng(allSalonsToMap.get(i).getLat(),
+                    allSalonsToMap.get(i).getLan())).title(allSalonsToMap.get(i).getName()));
             hm.put(marker,allSalonsToMap.get(i));
         }
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -116,6 +117,16 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
                 return false;
             }
         });
+    }
+    private BitmapDescriptor bitmapDescriptor(Context context, int vectorResId){
+        Drawable vectorDrawable=ContextCompat.getDrawable(context,vectorResId);
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap=Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     @Override
