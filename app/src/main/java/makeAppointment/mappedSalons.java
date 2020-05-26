@@ -90,7 +90,6 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
             public void onSuccess(Location location) {
                 if(location!=null){
                     currentLocation=location;
-                    Toast.makeText(getBaseContext(),currentLocation.getLatitude()+" "+currentLocation.getLongitude(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
