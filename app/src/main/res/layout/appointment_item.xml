@@ -15,6 +15,7 @@
         >
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/SalonImage"
+            android:onClick="onClickTest"
             android:layout_width="50dp"
             android:layout_height="50dp">
 

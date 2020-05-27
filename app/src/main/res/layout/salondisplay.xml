@@ -99,7 +99,7 @@
             app:layout_constraintBottom_toTopOf="@id/expandOpenTime"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/TVtel2"
-            app:srcCompat="@drawable/arrowup"/>
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expandOpenTime"

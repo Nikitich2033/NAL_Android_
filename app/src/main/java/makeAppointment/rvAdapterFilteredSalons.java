@@ -76,11 +76,11 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
                     if (holder.expandOpenTime.getVisibility()==View.GONE){
                         TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
                         holder.expandOpenTime.setVisibility(View.VISIBLE);
-                        holder.arrowBtn.setBackgroundResource(R.drawable.arrowup);
+                        holder.arrowBtn.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
                     } else {
                         TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
                         holder.expandOpenTime.setVisibility(View.GONE);
-                        holder.arrowBtn.setBackgroundResource(R.drawable.arrowup);
+                        holder.arrowBtn.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
                     }
                 }
             });
