@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "994308544042",
+    "firebase_url": "https://leonial.firebaseio.com",
+    "project_id": "leonial",
+    "storage_bucket": "leonial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994308544042:android:b186113b038d2dc9f1d553",
+        "android_client_info": {
+          "package_name": "com.example.nal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994308544042-e0bojk9fqfl891a1ksgbsfqqv09d0fl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzMv5qDKnmVBZNunn-HYVlgNQWzUVsgMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994308544042-e0bojk9fqfl891a1ksgbsfqqv09d0fl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
