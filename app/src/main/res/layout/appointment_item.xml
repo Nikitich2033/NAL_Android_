@@ -2,22 +2,22 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/CVappointment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
     android:layout_margin="10dp"
     >
 
     <RelativeLayout
-
+        android:id="@+id/RLtop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
         >
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/SalonImage"
-            android:onClick="onClickTest"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:layout_width="50sp"
+            android:layout_height="50sp">
 
         </androidx.appcompat.widget.AppCompatImageView>
 
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/MasterLastName"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="3sp"
 
             android:layout_toEndOf="@id/SalonImage"
             android:text="@string/first_name"
@@ -52,8 +52,8 @@
             android:id="@+id/AppointmentServiceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/MasterLastName"
+            android:layout_marginStart="10sp"
+            android:layout_toEndOf="@id/MasterFirstName"
             android:text="@string/service_name"
             android:textSize="18sp">
 
@@ -63,38 +63,52 @@
             android:id="@+id/AppointmentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="11sp"
             android:layout_below="@id/AppointmentServiceName"
-            android:layout_toEndOf="@id/AppointmentEndTime"
+            android:layout_toEndOf="@id/MasterFirstName"
             android:text="@string/service_date"
             android:textSize="18sp">
 
         </TextView>
 
-        <TextView
-            android:id="@+id/AppointmentStartTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/MasterLastName"
-            android:layout_marginStart="10dp"
 
-            android:layout_toEndOf="@id/MasterFirstName"
-            android:text="@string/start_time"
-            android:textSize="18sp">
 
-        </TextView>
-        <TextView
-            android:id="@+id/AppointmentEndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/MasterLastName"
-            android:layout_marginStart="10dp"
 
-            android:layout_toEndOf="@id/AppointmentStartTime"
-            android:text="@string/end_time"
-            android:textSize="18sp">
 
-        </TextView>
+        <RelativeLayout
+            android:id="@+id/ExpandAppoitnmentDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_below="@+id/AppointmentDate"
+            app:layout_constraintTop_toBottomOf="@id/AppointmentDate">
+
+            <TextView
+                android:id="@+id/AppointmentStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="10sp"
+                android:text="@string/start_time"
+                android:textSize="18sp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/AppointmentEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="10sp"
+                android:layout_toEndOf="@id/AppointmentStartTime"
+                android:text="@string/end_time"
+                android:textSize="18sp">
+            </TextView>
+
+
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
