@@ -127,5 +127,9 @@
     <string name="end_time">End Time</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="endtimeCONST">Примерное время окончания:</string>
+    <string name="starttimeCONST">Время записи</string>
+    <string name="salon_name">Salon Name</string>
+    <string name="masternameCONST">Имя мастера</string>
 
 </resources>

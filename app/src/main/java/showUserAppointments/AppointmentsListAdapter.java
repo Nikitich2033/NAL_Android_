@@ -22,7 +22,8 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
     private ArrayList<AppointmentObject> AppointmentsList;
 
     public static class AppointmentsViewHolder extends RecyclerView.ViewHolder{
-        public ImageView SalonLogo;
+        public ImageView arrowImg;
+        public TextView SalonName;
         public TextView MasterFirst;
         public TextView MasterLast;
         public TextView ServiceName;
@@ -35,7 +36,8 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
 
         public AppointmentsViewHolder(@NonNull View itemView) {
             super(itemView);
-            SalonLogo= itemView.findViewById(R.id.SalonImage);
+            arrowImg = itemView.findViewById(R.id.arrowButton);
+            SalonName = itemView.findViewById(R.id.AppointmentSalonName);
             MasterFirst = itemView.findViewById(R.id.MasterFirstName);
             MasterLast = itemView.findViewById(R.id.MasterLastName);
             ServiceName = itemView.findViewById(R.id.AppointmentServiceName);
@@ -68,21 +70,22 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         holder.MasterFirst.setText(currentAppointment.getMasterFirst());
         holder.MasterLast.setText(currentAppointment.getMasterLast());
         holder.ServiceName.setText(currentAppointment.getServiceName());
+        holder.SalonName.setText(currentAppointment.getSalonName());
         holder.Date.setText(currentAppointment.getServiceDate());
         holder.StartTime.setText(currentAppointment.getServiceStartTime());
         holder.EndTime.setText(currentAppointment.getServiceEndTime());
-        holder.SalonLogo.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
-        holder.SalonLogo.setOnClickListener(new View.OnClickListener() {
+        holder.arrowImg.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+        holder.arrowImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (holder.RLExpandAppointment.getVisibility()==View.GONE){
                     TransitionManager.beginDelayedTransition(holder.CVappointment , new AutoTransition());
                     holder.RLExpandAppointment.setVisibility(View.VISIBLE);
-                    holder.SalonLogo.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+                    holder.arrowImg.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
                 } else {
                     TransitionManager.beginDelayedTransition(holder.CVappointment, new AutoTransition());
                     holder.RLExpandAppointment.setVisibility(View.GONE);
-                    holder.SalonLogo.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+                    holder.arrowImg.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
                 }
             }
         });
