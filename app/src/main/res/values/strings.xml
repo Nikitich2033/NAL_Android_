@@ -131,5 +131,6 @@
     <string name="starttimeCONST">Время записи</string>
     <string name="salon_name">Salon Name</string>
     <string name="masternameCONST">Имя мастера</string>
+    <string name="salon_logo">Salon Logo</string>
 
 </resources>

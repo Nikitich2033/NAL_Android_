@@ -160,7 +160,8 @@
                 android:layout_width="180sp"
                 android:layout_height="180sp"
                 android:layout_below="@+id/MasterLastName"
-                app:srcCompat="@color/white" />
+                app:srcCompat="@color/white"
+                android:contentDescription="@string/salon_logo" />
 
 
         </RelativeLayout>
