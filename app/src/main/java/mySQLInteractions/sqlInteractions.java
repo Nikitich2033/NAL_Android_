@@ -1,11 +1,20 @@
 package mySQLInteractions;
+import android.graphics.Bitmap;
 import android.nfc.Tag;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.mysql.jdbc.log.Log;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -16,6 +25,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Base64;
+
 import java.util.List;
 
 import makeAppointment.Master;
@@ -145,6 +156,37 @@ public class sqlInteractions {
         String hex = String.format( "%064x", new BigInteger( 1, digest ) );
         return hex;
     }
+
+    private static void decodeImage(String encodedImg,String savePath){
+        byte[] data= Base64.getDecoder().decode(encodedImg);
+
+        try {
+            FileOutputStream fileOutputStream=new FileOutputStream(savePath);
+            fileOutputStream.write(data);
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String encodeImage(String imgPath){
+        byte[] data;
+        String result="";
+        try {
+            data = Files.readAllBytes(Paths.get(imgPath));
+            result=  Base64.getEncoder().encodeToString(data);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
 
     public static ArrayList<AppointmentObject> getUserFutureAppointments(String UserName){
 
