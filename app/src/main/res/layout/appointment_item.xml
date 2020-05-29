@@ -2,58 +2,50 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/CVappointment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
     android:layout_margin="10dp"
     >
 
     <RelativeLayout
-
+        android:id="@+id/RLtop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
         >
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/SalonImage"
-            android:onClick="onClickTest"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:id="@+id/arrowButton"
+            android:layout_width="50sp"
+            android:layout_height="50sp">
 
         </androidx.appcompat.widget.AppCompatImageView>
 
         <TextView
-            android:id="@+id/MasterLastName"
+            android:id="@+id/AppointmentSalonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/last_name"
+            android:text="@string/salon_name"
             android:textColor="@android:color/black"
+            android:layout_marginStart="10sp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/SalonImage"
+            android:layout_toEndOf="@+id/arrowButton"
             >
 
         </TextView>
 
-        <TextView
-            android:id="@+id/MasterFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/MasterLastName"
-            android:layout_marginStart="3dp"
-
-            android:layout_toEndOf="@id/SalonImage"
-            android:text="@string/first_name"
-            android:textSize="18sp">
-
-        </TextView>
 
         <TextView
             android:id="@+id/AppointmentServiceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/MasterLastName"
+            android:layout_marginStart="10sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_below="@id/AppointmentSalonName"
+            android:layout_toEndOf="@+id/arrowButton"
             android:text="@string/service_name"
             android:textSize="18sp">
 
@@ -63,38 +55,109 @@
             android:id="@+id/AppointmentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="10sp"
             android:layout_below="@id/AppointmentServiceName"
-            android:layout_toEndOf="@id/AppointmentEndTime"
+            android:layout_toEndOf="@id/arrowButton"
             android:text="@string/service_date"
             android:textSize="18sp">
 
         </TextView>
 
-        <TextView
-            android:id="@+id/AppointmentStartTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/MasterLastName"
-            android:layout_marginStart="10dp"
 
-            android:layout_toEndOf="@id/MasterFirstName"
-            android:text="@string/start_time"
-            android:textSize="18sp">
 
-        </TextView>
-        <TextView
-            android:id="@+id/AppointmentEndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/MasterLastName"
-            android:layout_marginStart="10dp"
+        <RelativeLayout
+            android:id="@+id/ExpandAppoitnmentDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_below="@+id/AppointmentDate"
+            app:layout_constraintTop_toBottomOf="@id/AppointmentDate">
 
-            android:layout_toEndOf="@id/AppointmentStartTime"
-            android:text="@string/end_time"
-            android:textSize="18sp">
+            <TextView
+                android:id="@+id/StartTimeCONST"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="10sp"
+                android:text="@string/starttimeCONST"
+                android:textSize="18sp">
 
-        </TextView>
+            </TextView>
+
+            <TextView
+                android:id="@+id/EndTimeCONST"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/StartTimeCONST"
+
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="10sp"
+                android:text="@string/endtimeCONST"
+                android:textSize="18sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/AppointmentStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/StartTimeCONST"
+                android:layout_marginStart="30sp"
+                android:text="@string/start_time"
+                android:textSize="18sp">
+
+            </TextView>
+            <TextView
+                android:id="@+id/AppointmentEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_below="@+id/EndTimeCONST"
+                android:text="@string/end_time"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/MasterNameCONST"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_below="@+id/AppointmentEndTime"
+                android:text="@string/masternameCONST"
+                android:textSize="18sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/MasterLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_name"
+                android:layout_marginStart="15sp"
+                android:textColor="@android:color/black"
+                android:layout_below="@+id/MasterNameCONST"
+                android:textSize="18sp"
+
+                >
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/MasterFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3sp"
+                android:text="@string/first_name"
+                android:layout_below="@+id/MasterNameCONST"
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@+id/MasterLastName"
+                android:textSize="18sp">
+
+            </TextView>
+
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

@@ -1,11 +1,20 @@
 package mySQLInteractions;
+import android.graphics.Bitmap;
 import android.nfc.Tag;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.mysql.jdbc.log.Log;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -16,6 +25,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Base64;
+
 import java.util.List;
 
 import makeAppointment.Master;
@@ -146,6 +157,37 @@ public class sqlInteractions {
         return hex;
     }
 
+    private static void decodeImage(String encodedImg,String savePath){
+        byte[] data= Base64.getDecoder().decode(encodedImg);
+
+        try {
+            FileOutputStream fileOutputStream=new FileOutputStream(savePath);
+            fileOutputStream.write(data);
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String encodeImage(String imgPath){
+        byte[] data;
+        String result="";
+        try {
+            data = Files.readAllBytes(Paths.get(imgPath));
+            result=  Base64.getEncoder().encodeToString(data);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
     public static ArrayList<AppointmentObject> getUserFutureAppointments(String UserName){
 
 
@@ -194,11 +236,12 @@ public class sqlInteractions {
             for (AppointmentObject appointment: appointments
             ) {
 
-                String sqlStatement2= "SELECT StartTime,EndTime,ServiceName,MasterName FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
+                String sqlStatement2= "SELECT StartTime,EndTime,name,ServiceName,MasterName FROM alexandr_allSalons.SalonDetails, alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
                         " where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\""+
                         " And Date = " + "\"" + appointment.serviceDate + "\""  +
                         " and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
-                        " and alexandr_salonsSpecial.Inter" +appointment.SalonId+"Appointments.MasterId = alexandr_salonsSpecial."+appointment.SalonId+"Masters.MasterId" +
+                        " and alexandr_salonsSpecial.Inter" +appointment.SalonId+"Appointments.MasterId = alexandr_salonsSpecial."+appointment.SalonId+"Masters.MasterId"+
+                        " and alexandr_allSalons.SalonDetails.SalonId =" + "\"" + appointment.SalonId + "\"" +
                         ";";
 
                     try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
@@ -207,6 +250,7 @@ public class sqlInteractions {
                         appointment.serviceStartTime = resultSet1.getString("StartTime");
                         appointment.serviceEndTime = resultSet1.getString("EndTime");
                         appointment.ServiceName = resultSet1.getString("ServiceName");
+                        appointment.SalonName = resultSet1.getString("name");
                         String TempMasterName =  resultSet1.getString("MasterName");
                         appointment.MasterFirst = TempMasterName.split(" ")[0];
                         appointment.MasterLast = TempMasterName.split(" ")[1];
@@ -232,6 +276,7 @@ public class sqlInteractions {
     }
 
     public static ArrayList<AppointmentObject> getUserPastAppointments(String UserName){
+
 
 
         Connection connection = null;
@@ -279,11 +324,12 @@ public class sqlInteractions {
             for (AppointmentObject appointment: appointments
             ) {
 
-                String sqlStatement2= "SELECT StartTime,EndTime,ServiceName,MasterName FROM alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
+                String sqlStatement2= "SELECT StartTime,EndTime,name,ServiceName,MasterName FROM alexandr_allSalons.SalonDetails, alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
                         " where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\""+
                         " And Date = " + "\"" + appointment.serviceDate + "\""  +
                         " and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
-                        " and alexandr_salonsSpecial.Inter" +appointment.SalonId+"Appointments.MasterId = alexandr_salonsSpecial."+appointment.SalonId+"Masters.MasterId" +
+                        " and alexandr_salonsSpecial.Inter" +appointment.SalonId+"Appointments.MasterId = alexandr_salonsSpecial."+appointment.SalonId+"Masters.MasterId"+
+                        " and alexandr_allSalons.SalonDetails.SalonId =" + "\"" + appointment.SalonId + "\"" +
                         ";";
 
                 try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
@@ -292,6 +338,7 @@ public class sqlInteractions {
                     appointment.serviceStartTime = resultSet1.getString("StartTime");
                     appointment.serviceEndTime = resultSet1.getString("EndTime");
                     appointment.ServiceName = resultSet1.getString("ServiceName");
+                    appointment.SalonName = resultSet1.getString("name");
                     String TempMasterName =  resultSet1.getString("MasterName");
                     appointment.MasterFirst = TempMasterName.split(" ")[0];
                     appointment.MasterLast = TempMasterName.split(" ")[1];
@@ -312,7 +359,6 @@ public class sqlInteractions {
             e.printStackTrace();
         }
         return null;
-
 
 
     }
