@@ -155,6 +155,12 @@
 
             </TextView>
 
+            <ImageView
+                android:id="@+id/salonLogoInExpand"
+                android:layout_width="180sp"
+                android:layout_height="180sp"
+                android:layout_below="@+id/MasterLastName"
+                app:srcCompat="@color/white" />
 
 
         </RelativeLayout>

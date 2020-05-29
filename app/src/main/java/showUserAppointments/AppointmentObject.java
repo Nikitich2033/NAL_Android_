@@ -1,5 +1,6 @@
 package showUserAppointments;
 
+import android.graphics.Bitmap;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.text.format.Time;
 
@@ -8,7 +9,7 @@ import java.util.Date;
 
 public class AppointmentObject {
 
-    private int SalonLogo;
+    public Bitmap SalonLogo;
     public  String UserId;
     public String SalonId;
     public String SalonName;
@@ -25,7 +26,7 @@ public class AppointmentObject {
     public String MasterFirst;
     public  String MasterLast;
 
-    public AppointmentObject(int salonLogo,String UserId, String SalonID,String salonName, String ServiceId, String userFirst, String masterID,String mastername,String userMiddle, String userLast, String serviceName, String serviceDate, String serviceStartTime, String serviceEndTime) {
+    public AppointmentObject(Bitmap salonLogo,String UserId, String SalonID,String salonName, String ServiceId, String userFirst, String masterID,String mastername,String userMiddle, String userLast, String serviceName, String serviceDate, String serviceStartTime, String serviceEndTime) {
         SalonLogo = salonLogo;
         this.UserId = UserId;
         SalonId = SalonID;
@@ -93,7 +94,7 @@ public class AppointmentObject {
         return serviceStartTime;
     }
 
-    public int getSalonLogo() {
+    public Bitmap getSalonLogo() {
         return SalonLogo;
     }
 }

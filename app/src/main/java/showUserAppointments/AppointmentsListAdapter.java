@@ -23,6 +23,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
 
     public static class AppointmentsViewHolder extends RecyclerView.ViewHolder{
         public ImageView arrowImg;
+        public ImageView salonLogo;
         public TextView SalonName;
         public TextView MasterFirst;
         public TextView MasterLast;
@@ -37,6 +38,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         public AppointmentsViewHolder(@NonNull View itemView) {
             super(itemView);
             arrowImg = itemView.findViewById(R.id.arrowButton);
+            salonLogo = itemView.findViewById(R.id.salonLogoInExpand);
             SalonName = itemView.findViewById(R.id.AppointmentSalonName);
             MasterFirst = itemView.findViewById(R.id.MasterFirstName);
             MasterLast = itemView.findViewById(R.id.MasterLastName);
@@ -74,6 +76,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         holder.Date.setText(currentAppointment.getServiceDate());
         holder.StartTime.setText(currentAppointment.getServiceStartTime());
         holder.EndTime.setText(currentAppointment.getServiceEndTime());
+        holder.salonLogo.setImageBitmap(currentAppointment.getSalonLogo());
         holder.arrowImg.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
         holder.arrowImg.setOnClickListener(new View.OnClickListener() {
             @Override

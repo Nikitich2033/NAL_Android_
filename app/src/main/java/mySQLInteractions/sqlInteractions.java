@@ -1,5 +1,7 @@
 package mySQLInteractions;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.nfc.Tag;
 import android.os.Build;
 
@@ -26,7 +28,6 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Base64;
-
 import java.util.List;
 
 import makeAppointment.Master;
@@ -157,26 +158,12 @@ public class sqlInteractions {
         return hex;
     }
 
-    private static void decodeImage(String encodedImg,String savePath){
-        byte[] data= Base64.getDecoder().decode(encodedImg);
-
-        try {
-            FileOutputStream fileOutputStream=new FileOutputStream(savePath);
-            fileOutputStream.write(data);
-            fileOutputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private static String encodeImage(String imgPath){
         byte[] data;
         String result="";
         try {
             data = Files.readAllBytes(Paths.get(imgPath));
-            result=  Base64.getEncoder().encodeToString(data);
+            result = Base64.getMimeEncoder().encodeToString(data);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -184,6 +171,13 @@ public class sqlInteractions {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private static Bitmap decodeImage(String encodedImg){
+        byte[] data= Base64.getMimeDecoder().decode(encodedImg);
+        Bitmap salonBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+
+        return salonBitmap;
     }
 
 
@@ -218,9 +212,9 @@ public class sqlInteractions {
            resultSet = statement.executeQuery();
             ArrayList<AppointmentObject> appointments = new ArrayList<>();
 
-
+            Bitmap empty = null;
             while (resultSet.next()) {
-                AppointmentObject temp = new AppointmentObject(1,"","","","",
+                AppointmentObject temp = new AppointmentObject(empty,"","","","",
                         "","","","","","","","","");
 
                 temp.SalonId = resultSet.getString("SalonId");
@@ -236,7 +230,7 @@ public class sqlInteractions {
             for (AppointmentObject appointment: appointments
             ) {
 
-                String sqlStatement2= "SELECT StartTime,EndTime,name,ServiceName,MasterName FROM alexandr_allSalons.SalonDetails, alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
+                String sqlStatement2= "SELECT StartTime,EndTime,name,ServiceName,MasterName,salonLogo FROM alexandr_salonsSpecial."+appointment.SalonId+"Pictures,alexandr_allSalons.SalonDetails, alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
                         " where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\""+
                         " And Date = " + "\"" + appointment.serviceDate + "\""  +
                         " and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
@@ -247,6 +241,7 @@ public class sqlInteractions {
                     try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
                         ResultSet resultSet1 = statement1.executeQuery();
                         resultSet1.next();
+                        appointment.SalonLogo = decodeImage(resultSet1.getString("salonLogo"));
                         appointment.serviceStartTime = resultSet1.getString("StartTime");
                         appointment.serviceEndTime = resultSet1.getString("EndTime");
                         appointment.ServiceName = resultSet1.getString("ServiceName");
@@ -306,9 +301,9 @@ public class sqlInteractions {
             resultSet = statement.executeQuery();
             ArrayList<AppointmentObject> appointments = new ArrayList<>();
 
-
+            Bitmap empty = null;
             while (resultSet.next()) {
-                AppointmentObject temp = new AppointmentObject(1,"","","","",
+                AppointmentObject temp = new AppointmentObject(empty,"","","","",
                         "","","","","","","","","");
 
                 temp.SalonId = resultSet.getString("SalonId");
@@ -324,7 +319,7 @@ public class sqlInteractions {
             for (AppointmentObject appointment: appointments
             ) {
 
-                String sqlStatement2= "SELECT StartTime,EndTime,name,ServiceName,MasterName FROM alexandr_allSalons.SalonDetails, alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
+                String sqlStatement2= "SELECT StartTime,EndTime,name,ServiceName,MasterName,salonLogo FROM alexandr_salonsSpecial."+appointment.SalonId+"Pictures,alexandr_allSalons.SalonDetails, alexandr_salonsSpecial.Inter"+appointment.SalonId+"Appointments,alexandr_salonsSpecial."+appointment.SalonId+"Offers, alexandr_salonsSpecial."+appointment.SalonId+"Masters" +
                         " where alexandr_salonsSpecial.Inter" +appointment.SalonId + "Appointments.ServiceId = "+ "\"" + appointment.ServiceId + "\""+
                         " And Date = " + "\"" + appointment.serviceDate + "\""  +
                         " and alexandr_salonsSpecial.Inter" + appointment.SalonId +"Appointments.ServiceId = alexandr_salonsSpecial."+appointment.SalonId+"Offers.ServiceId" +
@@ -335,6 +330,7 @@ public class sqlInteractions {
                 try (PreparedStatement statement1 = connection.prepareStatement(sqlStatement2)) {
                     ResultSet resultSet1 = statement1.executeQuery();
                     resultSet1.next();
+                    appointment.SalonLogo = decodeImage(resultSet1.getString("salonLogo"));
                     appointment.serviceStartTime = resultSet1.getString("StartTime");
                     appointment.serviceEndTime = resultSet1.getString("EndTime");
                     appointment.ServiceName = resultSet1.getString("ServiceName");
