@@ -172,7 +172,7 @@ public class sqlInteractions {
         return result;
     }
 
-    private static Bitmap decodeImage(String encodedImg){
+    public static Bitmap decodeImage(String encodedImg){
         byte[] data= Base64.getMimeDecoder().decode(encodedImg);
         Bitmap salonBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 
@@ -634,12 +634,14 @@ public class sqlInteractions {
                     for (int j = 0; j < imageS.length(); j = j + 1) {
                         if (imageS.charAt(j) == '$') {
                             imageStrings.add(image.toString());
+                            System.out.println(image.toString());
                             image = new StringBuilder();
                         } else {
                             image.append(imageS.charAt(j));
                         }
                     }
                     imageStrings.add(image.toString());
+                    System.out.println(image.toString());
                 }else {
                     imageStrings=null;
                 }

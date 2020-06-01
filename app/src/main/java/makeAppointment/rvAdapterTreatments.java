@@ -1,10 +1,13 @@
 package makeAppointment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.nal.R;
 
 import java.util.ArrayList;
+
+import mySQLInteractions.sqlInteractions;
 
 public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatments.treatmentsObjectHolder> {
     private ArrayList<Treatment> treatmentsObjects=new ArrayList<>();
@@ -44,6 +49,18 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
                 v.getContext().startActivity(intent);
             }
         });
+        if (treatmentObject.getImageStrings()==null){
+            holder.expandableImages.setVisibility(View.GONE);
+        }else {
+            for(int i=0;i<treatmentObject.getImageStrings().size();i=i+1){
+               // holder.ImageViews[i].setImageBitmap(sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i)));
+                //System.out.println(treatmentObject.getImageStrings().get(i));
+                //Bitmap bitmap=sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i));
+            }
+            for(int a=treatmentObject.getImageStrings().size();a<5;a=a+1){
+                holder.ImageViews[a].setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     @Override
@@ -56,12 +73,20 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
         private TextView treatmentDurationTV;
         private TextView treatmentPriceTV;
         private Button chooseTreatment;
+        private ScrollView expandableImages;
+        private ImageView[] ImageViews=new ImageView[5];
         public treatmentsObjectHolder(@NonNull View itemView) {
             super(itemView);
             treatmentNameTV=itemView.findViewById(R.id.treatmentNameTV);
             treatmentDurationTV=itemView.findViewById(R.id.treatmentDurationTV);
             treatmentPriceTV=itemView.findViewById(R.id.treatmentPriceTV);
             chooseTreatment=itemView.findViewById(R.id.chooseTreatment);
+            ImageViews[0]=itemView.findViewById(R.id.IV1);
+            ImageViews[1]=itemView.findViewById(R.id.IV2);
+            ImageViews[2]=itemView.findViewById(R.id.IV3);
+            ImageViews[3]=itemView.findViewById(R.id.IV4);
+            ImageViews[4]=itemView.findViewById(R.id.IV5);
+            expandableImages=itemView.findViewById(R.id.expandableImages);
         }
     }
 }
