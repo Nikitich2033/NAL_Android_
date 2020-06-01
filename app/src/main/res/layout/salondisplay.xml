@@ -13,18 +13,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/TVname"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textSize="18sp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/IVLogo"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/item1" />
+
+            <TextView
+                android:id="@+id/TVname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/TVadressLine1"
@@ -35,7 +51,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TVname" />
+            app:layout_constraintTop_toBottomOf="@id/LL" />
 
         <TextView
             android:id="@+id/TVadressLine2"
@@ -99,7 +115,7 @@
             app:layout_constraintBottom_toTopOf="@id/expandOpenTime"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/TVtel2"
-            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp"/>
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expandOpenTime"

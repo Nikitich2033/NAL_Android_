@@ -484,6 +484,7 @@ public class sqlInteractions {
            String tel1 = "";
            String tel2 = "";
            ArrayList<Time> openTimes = new ArrayList<>();
+           Bitmap LogoImage=null;
 
            String sqlSatatement = "SELECT * FROM alexandr_allSalons.SalonDetails where SalonId=?;";
            try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
@@ -509,6 +510,7 @@ public class sqlInteractions {
                ArrayList<Time> result18 = new ArrayList<>();
                ArrayList<Time> result19 = new ArrayList<>();
                ArrayList<Time> result20 = new ArrayList<>();
+               ArrayList<String> result21 = new ArrayList<>();
                while (resultSet.next()) {
                    result1.add(resultSet.getString("name"));
                    result2.add(resultSet.getString("addressLine1"));
@@ -530,6 +532,7 @@ public class sqlInteractions {
                    result18.add(resultSet.getTime("saturdayEnd"));
                    result19.add(resultSet.getTime("sundayStart"));
                    result20.add(resultSet.getTime("sundayEnd"));
+                   result21.add(resultSet.getString("LogoImage"));
                }
                name = result1.get(0);
                adressLine1 = result2.get(0);
@@ -551,10 +554,11 @@ public class sqlInteractions {
                openTimes.add(result18.get(0));
                openTimes.add(result19.get(0));
                openTimes.add(result20.get(0));
+               LogoImage=decodeImage(result21.get(0));
            } catch (SQLException e) {
                e.printStackTrace();
            }
-           salons.add(new salonObject(SalonId,name,adressLine1,adressLine2,eMail,tel1,tel2,openTimes));
+           salons.add(new salonObject(SalonId,name,adressLine1,adressLine2,eMail,tel1,tel2,openTimes,LogoImage));
        }
        try {
            connection.close();
@@ -789,6 +793,7 @@ public class sqlInteractions {
             double Lat = 0;
             double Lan = 0;
             ArrayList<Time> openTimes = new ArrayList<>();
+            Bitmap LogoImage=null;
 
             String sqlSatatement = "SELECT * FROM alexandr_allSalons.SalonDetails where SalonId=?;";
             try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
@@ -816,6 +821,7 @@ public class sqlInteractions {
                 ArrayList<Time> result20 = new ArrayList<>();
                 ArrayList<Double> result21 = new ArrayList<>();
                 ArrayList<Double> result22 = new ArrayList<>();
+                ArrayList<String> result23 = new ArrayList<>();
                 while (resultSet.next()) {
                     result1.add(resultSet.getString("name"));
                     result2.add(resultSet.getString("addressLine1"));
@@ -839,6 +845,7 @@ public class sqlInteractions {
                     result20.add(resultSet.getTime("sundayEnd"));
                     result21.add(resultSet.getDouble("Lat"));
                     result22.add(resultSet.getDouble("Lan"));
+                    result22.add(resultSet.getDouble("LogoImage"));
                 }
                 name = result1.get(0);
                 adressLine1 = result2.get(0);
@@ -862,10 +869,11 @@ public class sqlInteractions {
                 openTimes.add(result20.get(0));
                 Lat=result21.get(0);
                 Lan=result22.get(0);
+                LogoImage=decodeImage(result23.get(0));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            salons.add(new salonObject(SalonId,name,adressLine1,adressLine2,eMail,tel1,tel2,Lat,Lan,openTimes));
+            salons.add(new salonObject(SalonId,name,adressLine1,adressLine2,eMail,tel1,tel2,Lat,Lan,openTimes,LogoImage));
         }
         try {
             connection.close();

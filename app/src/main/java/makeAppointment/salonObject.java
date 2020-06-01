@@ -1,5 +1,6 @@
 package makeAppointment;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import java.sql.Time;
@@ -19,6 +20,7 @@ public class salonObject {
     private double Lat;
     private double Lan;
     private ArrayList<Time> openTimes;
+    private Bitmap LogoImage;
 
     public double getLat() {
         return Lat;
@@ -28,7 +30,7 @@ public class salonObject {
         return Lan;
     }
 
-    public salonObject(String salonId, String name, String adressLine1, String adressLine2, String eMail, String tel1, String tel2, double lat, double lan, ArrayList<Time> openTimes) {
+    public salonObject(String salonId, String name, String adressLine1, String adressLine2, String eMail, String tel1, String tel2, double lat, double lan, ArrayList<Time> openTimes,Bitmap LogoImage) {
         SalonId = salonId;
         this.name = name;
         this.adressLine1 = adressLine1;
@@ -39,10 +41,11 @@ public class salonObject {
         Lat = lat;
         Lan = lan;
         this.openTimes = openTimes;
+        this.LogoImage=LogoImage;
     }
 
 
-    public salonObject(String SalonId,String name,String adressLine1,String adressLine2,String eMail,String tel1,String tel2,ArrayList<Time> openTimes){
+    public salonObject(String SalonId,String name,String adressLine1,String adressLine2,String eMail,String tel1,String tel2,ArrayList<Time> openTimes,Bitmap LogoImage){
         this.SalonId=SalonId;
         this.name=name;
         this.adressLine1=adressLine1;
@@ -51,6 +54,7 @@ public class salonObject {
         this.tel1=tel1;
         this.tel2=tel2;
         this.openTimes=openTimes;
+        this.LogoImage=LogoImage;
     }
 
     public String getSalonId() {
@@ -83,5 +87,8 @@ public class salonObject {
 
     public ArrayList<Time> getOpenTimes() {
         return openTimes;
+    }
+    public Bitmap getLogoImage(){
+        return LogoImage;
     }
 }

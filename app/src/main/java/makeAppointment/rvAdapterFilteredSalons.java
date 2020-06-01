@@ -47,6 +47,7 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
         ArrayList<Time> openTimes=SalonObject.getOpenTimes();
         TextView[] daysTVs={holder.TVmondayTime,holder.TVtuesdayTime,holder.TVwednesdayTime,
                 holder.TVthursdayTime,holder.TVfridayTime,holder.TVsaturdayTime,holder.TVsundayTime};
+        holder.IVLogo.setImageBitmap(SalonObject.getLogoImage());
         for (int i=0;i<7;i=i+1){
             if(openTimes.get(i*2)!=null){
                 String hourStart=String.valueOf(openTimes.get(i*2).getHours());
@@ -129,6 +130,7 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
         private TextView TVfridayTime;
         private TextView TVsaturdayTime;
         private TextView TVsundayTime;
+        private ImageView IVLogo;
         public salonObjectHolder(@NonNull View itemView) {
             super(itemView);
             arrowBtn=itemView.findViewById(R.id.arrowButton);
@@ -156,6 +158,7 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
             TVfridayTime=itemView.findViewById(R.id.TVfridayTime);
             TVsaturdayTime=itemView.findViewById(R.id.TVsaturdayTime);
             TVsundayTime=itemView.findViewById(R.id.TVsundayTime);
+            IVLogo=itemView.findViewById(R.id.IVLogo);
         }
     }
 }
