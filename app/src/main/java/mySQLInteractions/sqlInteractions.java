@@ -143,7 +143,6 @@ public class sqlInteractions {
             }
         }
     }
-
     private static String getSHA256Hash(String data) {
         MessageDigest md = null;
         try {
@@ -608,6 +607,7 @@ public class sqlInteractions {
             int DurationMin=0;
             double Price=0.0;
             int Tag=0;
+            ArrayList<String> imageStrings=new ArrayList<>();
             String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial." + SalonId + "Offers where ServiceId=?;";
             try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
                 statement.setString(1, TreatmentsIds.get(i));
@@ -616,21 +616,38 @@ public class sqlInteractions {
                 ArrayList<Integer> result2 = new ArrayList<>();
                 ArrayList<Double> result3 = new ArrayList<>();
                 ArrayList<Integer> result4 = new ArrayList<>();
+                ArrayList<String> result5 = new ArrayList<>();
                 while (resultSet.next()) {
                     result1.add(resultSet.getString("ServiceName"));
                     result2.add(resultSet.getInt("DurationMin"));
                     result3.add(resultSet.getDouble("Price"));
                     result4.add(resultSet.getInt("Tag"));
+                    result5.add(resultSet.getString("imageString"));
                 }
                 ServiceName=result1.get(0);
                 DurationMin=result2.get(0);
                 Price=result3.get(0);
                 Tag=result4.get(0);
+                String imageS=result5.get(0);
+                StringBuilder image=new StringBuilder();
+                if(imageS!=null) {
+                    for (int j = 0; j < imageS.length(); j = j + 1) {
+                        if (imageS.charAt(j) == '$') {
+                            imageStrings.add(image.toString());
+                            image = new StringBuilder();
+                        } else {
+                            image.append(imageS.charAt(j));
+                        }
+                    }
+                    imageStrings.add(image.toString());
+                }else {
+                    imageStrings=null;
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            treatmentsObjects.add(new Treatment(ServiceId,ServiceName,DurationMin,Price, Tag));
+            treatmentsObjects.add(new Treatment(ServiceId,ServiceName,DurationMin,Price,Tag,imageStrings));
         }
         try {
             connection.close();
