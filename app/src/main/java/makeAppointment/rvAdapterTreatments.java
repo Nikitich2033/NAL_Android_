@@ -53,7 +53,7 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
             holder.expandableImages.setVisibility(View.GONE);
         }else {
             for(int i=0;i<treatmentObject.getImageStrings().size();i=i+1){
-               // holder.ImageViews[i].setImageBitmap(sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i)));
+                holder.ImageViews[i].setImageBitmap(sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i)));
                 //System.out.println(treatmentObject.getImageStrings().get(i));
                 //Bitmap bitmap=sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i));
             }
