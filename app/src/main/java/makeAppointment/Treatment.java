@@ -1,6 +1,9 @@
 package makeAppointment;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
+import java.util.BitSet;
 
 public class Treatment {
     private String ServiceId;
@@ -8,15 +11,15 @@ public class Treatment {
     private int DurationMin;
     private double Price;
     private int Tag;
-    private ArrayList<String> imageStrings=new ArrayList<>();
+    private ArrayList<Bitmap> imageBitmaps=new ArrayList<>();
 
-    public Treatment(String serviceId, String serviceName, int durationMin, double price,int tag,ArrayList<String> imageStrings) {
+    public Treatment(String serviceId, String serviceName, int durationMin, double price,int tag,ArrayList<Bitmap> imageBitmaps) {
         ServiceId = serviceId;
         ServiceName = serviceName;
         DurationMin = durationMin;
         Price = price;
         Tag=tag;
-        this.imageStrings=imageStrings;
+        this.imageBitmaps=imageBitmaps;
     }
     public int getTag(){
         return Tag;
@@ -36,7 +39,7 @@ public class Treatment {
     public double getPrice() {
         return Price;
     }
-    public ArrayList<String> getImageStrings(){
-        return imageStrings;
+    public ArrayList<Bitmap> getImageBitmaps(){
+        return imageBitmaps;
     }
 }

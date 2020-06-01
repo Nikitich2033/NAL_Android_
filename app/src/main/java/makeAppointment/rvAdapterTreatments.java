@@ -49,15 +49,14 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
                 v.getContext().startActivity(intent);
             }
         });
-        if (treatmentObject.getImageStrings()==null){
+        if (treatmentObject.getImageBitmaps()==null){
             holder.expandableImages.setVisibility(View.GONE);
         }else {
-            for(int i=0;i<treatmentObject.getImageStrings().size();i=i+1){
-                holder.ImageViews[i].setImageBitmap(sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i)));
-                //System.out.println(treatmentObject.getImageStrings().get(i));
-                //Bitmap bitmap=sqlInteractions.decodeImage(treatmentObject.getImageStrings().get(i));
+            for(int i=0;i<treatmentObject.getImageBitmaps().size();i=i+1){
+                holder.ImageViews[i].setImageBitmap(treatmentObject.getImageBitmaps().get(i));
+
             }
-            for(int a=treatmentObject.getImageStrings().size();a<5;a=a+1){
+            for(int a=treatmentObject.getImageBitmaps().size();a<5;a=a+1){
                 holder.ImageViews[a].setVisibility(View.INVISIBLE);
             }
         }

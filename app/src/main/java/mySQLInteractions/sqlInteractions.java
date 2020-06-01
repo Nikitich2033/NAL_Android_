@@ -607,7 +607,7 @@ public class sqlInteractions {
             int DurationMin=0;
             double Price=0.0;
             int Tag=0;
-            ArrayList<String> imageStrings=new ArrayList<>();
+            ArrayList<Bitmap> imageBitmaps=new ArrayList<>();
             String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial." + SalonId + "Offers where ServiceId=?;";
             try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
                 statement.setString(1, TreatmentsIds.get(i));
@@ -633,23 +633,21 @@ public class sqlInteractions {
                 if(imageS!=null) {
                     for (int j = 0; j < imageS.length(); j = j + 1) {
                         if (imageS.charAt(j) == '$') {
-                            imageStrings.add(image.toString());
-                            System.out.println(image.toString());
+                            imageBitmaps.add(decodeImage(image.toString()));
                             image = new StringBuilder();
                         } else {
                             image.append(imageS.charAt(j));
                         }
                     }
-                    imageStrings.add(image.toString());
-                    System.out.println(image.toString());
+                    imageBitmaps.add(decodeImage(image.toString()));
                 }else {
-                    imageStrings=null;
+                    imageBitmaps=null;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            treatmentsObjects.add(new Treatment(ServiceId,ServiceName,DurationMin,Price,Tag,imageStrings));
+            treatmentsObjects.add(new Treatment(ServiceId,ServiceName,DurationMin,Price,Tag,imageBitmaps));
         }
         try {
             connection.close();
