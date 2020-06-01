@@ -100,45 +100,41 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.zolad.zoominimageview.ZoomInImageView
                         android:id="@+id/IV1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/item1" />
-
-                    <ImageView
+                        android:src="@drawable/item1" />
+                    <com.zolad.zoominimageview.ZoomInImageView
                         android:id="@+id/IV2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/item1" />
-
-                    <ImageView
+                        android:src="@drawable/item1" />
+                    <com.zolad.zoominimageview.ZoomInImageView
                         android:id="@+id/IV3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/item1" />
-
-                    <ImageView
+                        android:src="@drawable/item1" />
+                    <com.zolad.zoominimageview.ZoomInImageView
                         android:id="@+id/IV4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/item1" />
-
-                    <ImageView
+                        android:src="@drawable/item1" />
+                    <com.zolad.zoominimageview.ZoomInImageView
                         android:id="@+id/IV5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/item1" />
+                        android:src="@drawable/item1" />
                 </LinearLayout>
             </ScrollView>
 

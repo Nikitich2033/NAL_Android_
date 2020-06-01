@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nal.R;
+import com.zolad.zoominimageview.ZoomInImageView;
 
 import java.util.ArrayList;
 
@@ -73,7 +74,7 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
         private TextView treatmentPriceTV;
         private Button chooseTreatment;
         private ScrollView expandableImages;
-        private ImageView[] ImageViews=new ImageView[5];
+        private ZoomInImageView[] ImageViews=new ZoomInImageView[5];
         public treatmentsObjectHolder(@NonNull View itemView) {
             super(itemView);
             treatmentNameTV=itemView.findViewById(R.id.treatmentNameTV);
