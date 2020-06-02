@@ -20,7 +20,6 @@ import mySQLInteractions.sqlInteractions;
 
 public class allFilteredSalonsByTag extends AppCompatActivity {
     private int tag;
-    private ArrayList<String> SalonIds=new ArrayList<>();
     private ArrayList<salonObject> salonObjects=new ArrayList<>();
     private ProgressBar progressBar2;
     private RecyclerView RVfoundSalonsByTag;
@@ -55,17 +54,7 @@ public class allFilteredSalonsByTag extends AppCompatActivity {
             Intent intent=getIntent();
             tag=intent.getIntExtra("tag",0);
             StringBuilder allIDsString=sqlInteractions.getSalonIds(tag);
-            StringBuilder word=new StringBuilder();
-            for (int i=0; i<allIDsString.length();i=i+1){
-                if(allIDsString.charAt(i)=='$'){
-                    SalonIds.add(word.toString());
-                    word.setLength(0);
-                }
-                else {
-                    word.append(allIDsString.charAt(i));
-                }
-            }
-            SalonIds.add(word.toString());
+            String[] SalonIds=allIDsString.toString().split("#");
             salonObjects=sqlInteractions.getObjectsSalon(SalonIds);
             return null;
         }

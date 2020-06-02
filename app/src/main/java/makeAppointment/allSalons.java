@@ -21,7 +21,6 @@ import mySQLInteractions.sqlInteractions;
 public class allSalons extends AppCompatActivity {
     private RecyclerView RVallSalons;
     private ProgressBar progressBar4;
-    private ArrayList<String> SalonIds=new ArrayList<>();
     private ArrayList<salonObject> salonObjects=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class allSalons extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            SalonIds=sqlInteractions.getSalonIds();
+            String[] SalonIds=sqlInteractions.getSalonIds();
             salonObjects=sqlInteractions.getObjectsSalon(SalonIds);
             return null;
         }

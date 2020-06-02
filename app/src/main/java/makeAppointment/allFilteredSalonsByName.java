@@ -21,7 +21,6 @@ import mySQLInteractions.sqlInteractions;
 
 public class allFilteredSalonsByName extends AppCompatActivity {
     private String ServiceName;
-    private ArrayList<String> SalonIds=new ArrayList<>();
     private ArrayList<salonObject> salonObjects=new ArrayList<>();
     private ProgressBar progressBar1;
     private RecyclerView RVfoundSalonsByName;
@@ -61,17 +60,7 @@ public class allFilteredSalonsByName extends AppCompatActivity {
             Intent intent=getIntent();
             ServiceName=intent.getStringExtra("ServiceName");
             StringBuilder allIDsString=sqlInteractions.getSalonIds(ServiceName);
-            StringBuilder word=new StringBuilder();
-            for (int i=0; i<allIDsString.length();i=i+1){
-                if(allIDsString.charAt(i)=='$'){
-                    SalonIds.add(word.toString());
-                    word.setLength(0);
-                }
-                else {
-                    word.append(allIDsString.charAt(i));
-                }
-            }
-            SalonIds.add(word.toString());
+            String[] SalonIds=allIDsString.toString().split("#");
             salonObjects=sqlInteractions.getObjectsSalon(SalonIds);
             return null;
         }

@@ -439,7 +439,7 @@ public class sqlInteractions {
         }
         return null;
     }
-    public static ArrayList<String> getSalonIds(){
+    public static String[] getSalonIds(){
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -458,13 +458,14 @@ public class sqlInteractions {
                 result.add(resultSet.getString("SalonId"));
             }
             connection.close();
-            return result;
+            String[] result1=result.toArray(new String[0]);
+            return result1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    public static ArrayList<salonObject> getObjectsSalon(ArrayList<String> SalonIds){
+    public static ArrayList<salonObject> getObjectsSalon(String[] SalonIds){
        Connection connection = null;
        try {
            Class.forName("com.mysql.jdbc.Driver");
@@ -475,8 +476,8 @@ public class sqlInteractions {
            e.printStackTrace();
        }
        ArrayList<salonObject> salons=new ArrayList<>();
-       for(int i=0;i<SalonIds.size();i=i+1) {
-           String SalonId=SalonIds.get(i);
+       for(int i=0;i<SalonIds.length;i=i+1) {
+           String SalonId=SalonIds[i];
            String name = "";
            String adressLine1 = "";
            String adressLine2 = "";
@@ -789,7 +790,7 @@ public class sqlInteractions {
             e.printStackTrace();
         }
     }
-    public static ArrayList<salonObject> getMapObjectsSalon(ArrayList<String> SalonIds){
+    public static ArrayList<salonObject> getMapObjectsSalon(String[] SalonIds){
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -800,8 +801,8 @@ public class sqlInteractions {
             e.printStackTrace();
         }
         ArrayList<salonObject> salons=new ArrayList<>();
-        for(int i=0;i<SalonIds.size();i=i+1) {
-            String SalonId=SalonIds.get(i);
+        for(int i=0;i<SalonIds.length;i=i+1) {
+            String SalonId=SalonIds[i];
             String name = "";
             String adressLine1 = "";
             String adressLine2 = "";

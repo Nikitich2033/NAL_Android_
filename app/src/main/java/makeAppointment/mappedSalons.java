@@ -51,7 +51,7 @@ import static com.google.android.gms.maps.GoogleMap.*;
 public class mappedSalons extends AppCompatActivity implements OnMapReadyCallback  {
     private GoogleMap SalonsMap;
     private MapView myMapView;
-    private static ArrayList<String> SalonIds;
+    private static String[] SalonIds;
     private static ArrayList<salonObject> allSalonsToMap;
     private HashMap<Marker,salonObject> hm=new HashMap<>();
     private ProgressBar progressBar10;
