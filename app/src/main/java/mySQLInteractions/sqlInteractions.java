@@ -595,7 +595,7 @@ public class sqlInteractions {
         return null;
     }
     public static ArrayList<Treatment> getObjectsTreatments(ArrayList<String> TreatmentsIds,String SalonId){
-        Connection connection = null;
+         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
@@ -606,12 +606,12 @@ public class sqlInteractions {
         }
         ArrayList<Treatment> treatmentsObjects=new ArrayList<>();
         for(int i=0;i<TreatmentsIds.size();i=i+1) {
-            String ServiceId=TreatmentsIds.get(i);
-            String ServiceName="";
-            int DurationMin=0;
-            double Price=0.0;
-            int Tag=0;
-            ArrayList<Bitmap> imageBitmaps=new ArrayList<>();
+            String ServiceId = TreatmentsIds.get(i);
+            String ServiceName = "";
+            int DurationMin = 0;
+            double Price = 0.0;
+            int Tag = 0;
+            ArrayList<Bitmap> imageBitmaps = new ArrayList<>();
             String sqlSatatement = "SELECT * FROM alexandr_salonsSpecial." + SalonId + "Offers where ServiceId=?;";
             try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
                 statement.setString(1, TreatmentsIds.get(i));
@@ -621,37 +621,55 @@ public class sqlInteractions {
                 ArrayList<Double> result3 = new ArrayList<>();
                 ArrayList<Integer> result4 = new ArrayList<>();
                 ArrayList<String> result5 = new ArrayList<>();
+                ArrayList<String> result6 = new ArrayList<>();
+                ArrayList<String> result7 = new ArrayList<>();
+                ArrayList<String> result8 = new ArrayList<>();
+                ArrayList<String> result9 = new ArrayList<>();
                 while (resultSet.next()) {
                     result1.add(resultSet.getString("ServiceName"));
                     result2.add(resultSet.getInt("DurationMin"));
                     result3.add(resultSet.getDouble("Price"));
                     result4.add(resultSet.getInt("Tag"));
-                    result5.add(resultSet.getString("imageString"));
+                    result5.add(resultSet.getString("imageString1"));
+                    result6.add(resultSet.getString("imageString2"));
+                    result7.add(resultSet.getString("imageString3"));
+                    result8.add(resultSet.getString("imageString4"));
+                    result9.add(resultSet.getString("imageString5"));
                 }
-                ServiceName=result1.get(0);
-                DurationMin=result2.get(0);
-                Price=result3.get(0);
-                Tag=result4.get(0);
-                String imageS=result5.get(0);
-                StringBuilder image=new StringBuilder();
-                if(imageS!=null) {
-                    for (int j = 0; j < imageS.length(); j = j + 1) {
-                        if (imageS.charAt(j) == '$') {
-                            imageBitmaps.add(decodeImage(image.toString()));
-                            image = new StringBuilder();
-                        } else {
-                            image.append(imageS.charAt(j));
-                        }
-                    }
-                    imageBitmaps.add(decodeImage(image.toString()));
+                ServiceName = result1.get(0);
+                DurationMin = result2.get(0);
+                Price = result3.get(0);
+                Tag = result4.get(0);
+                if(result5.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result5.get(0)));
                 }else {
-                    imageBitmaps=null;
+                    imageBitmaps.add(null);
+                }
+                if(result6.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result6.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result7.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result7.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result8.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result8.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result9.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result9.get(0)));
+                }else {
+                    imageBitmaps.add(null);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            treatmentsObjects.add(new Treatment(ServiceId,ServiceName,DurationMin,Price,Tag,imageBitmaps));
+            treatmentsObjects.add(new Treatment(ServiceId, ServiceName, DurationMin, Price, Tag, imageBitmaps));
         }
         try {
             connection.close();

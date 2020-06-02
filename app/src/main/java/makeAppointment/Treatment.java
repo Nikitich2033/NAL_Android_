@@ -13,13 +13,13 @@ public class Treatment {
     private int Tag;
     private ArrayList<Bitmap> imageBitmaps=new ArrayList<>();
 
-    public Treatment(String serviceId, String serviceName, int durationMin, double price,int tag,ArrayList<Bitmap> imageBitmaps) {
+    public Treatment(String serviceId, String serviceName, int durationMin, double price,int tag,ArrayList<Bitmap> imageStrings) {
         ServiceId = serviceId;
         ServiceName = serviceName;
         DurationMin = durationMin;
         Price = price;
         Tag=tag;
-        this.imageBitmaps=imageBitmaps;
+        this.imageBitmaps=imageStrings;
     }
     public int getTag(){
         return Tag;

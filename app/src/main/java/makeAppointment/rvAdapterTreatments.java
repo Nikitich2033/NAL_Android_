@@ -50,15 +50,18 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
                 v.getContext().startActivity(intent);
             }
         });
-        if (treatmentObject.getImageBitmaps()==null){
+        if (treatmentObject.getImageBitmaps().get(0)==null&&treatmentObject.getImageBitmaps().get(1)==null&&
+        treatmentObject.getImageBitmaps().get(2)==null&&treatmentObject.getImageBitmaps().get(3)==null&&
+                treatmentObject.getImageBitmaps().get(4)==null){
             holder.expandableImages.setVisibility(View.GONE);
         }else {
-            for(int i=0;i<treatmentObject.getImageBitmaps().size();i=i+1){
-                holder.ImageViews[i].setImageBitmap(treatmentObject.getImageBitmaps().get(i));
-
-            }
-            for(int a=treatmentObject.getImageBitmaps().size();a<5;a=a+1){
-                holder.ImageViews[a].setVisibility(View.INVISIBLE);
+            for(int i=0;i<5;i=i+1){
+                if(treatmentObject.getImageBitmaps().get(i)==null){
+                    holder.ImageViews[i].setVisibility(View.INVISIBLE);
+                }
+                else {
+                    holder.ImageViews[i].setImageBitmap(treatmentObject.getImageBitmaps().get(i));
+                }
             }
         }
     }
