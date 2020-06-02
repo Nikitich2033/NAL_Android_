@@ -845,7 +845,7 @@ public class sqlInteractions {
                     result20.add(resultSet.getTime("sundayEnd"));
                     result21.add(resultSet.getDouble("Lat"));
                     result22.add(resultSet.getDouble("Lan"));
-                    result22.add(resultSet.getDouble("LogoImage"));
+                    result23.add(resultSet.getString("LogoImage"));
                 }
                 name = result1.get(0);
                 adressLine1 = result2.get(0);
