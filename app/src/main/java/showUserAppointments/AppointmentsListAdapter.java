@@ -5,6 +5,7 @@ import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
     public static class AppointmentsViewHolder extends RecyclerView.ViewHolder{
         public ImageView arrowImg;
         public ImageView salonLogo;
+        public Button cancelAppointment;
         public TextView SalonName;
         public TextView MasterFirst;
         public TextView MasterLast;
@@ -38,7 +40,8 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         public AppointmentsViewHolder(@NonNull View itemView) {
             super(itemView);
             arrowImg = itemView.findViewById(R.id.arrowButton);
-            salonLogo = itemView.findViewById(R.id.salonLogoInExpand);
+            salonLogo = itemView.findViewById(R.id.salonLogoImg);
+            cancelAppointment = itemView.findViewById(R.id.CancelAppointmentButton);
             SalonName = itemView.findViewById(R.id.AppointmentSalonName);
             MasterFirst = itemView.findViewById(R.id.MasterFirstName);
             MasterLast = itemView.findViewById(R.id.MasterLastName);
@@ -90,9 +93,19 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
                     holder.RLExpandAppointment.setVisibility(View.GONE);
                     holder.arrowImg.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
                 }
+
+
+
             }
+
         });
 
+        holder.cancelAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.CVappointment.setVisibility(View.GONE);
+            }
+        });
 
 
     }
