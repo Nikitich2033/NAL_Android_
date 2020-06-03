@@ -132,5 +132,8 @@
     <string name="salon_name">Salon Name</string>
     <string name="masternameCONST">Имя мастера</string>
     <string name="salon_logo">Salon Logo</string>
+    <string name="cancel_appointment">Отменить Запись</string>
+    <string name="myAccount">Мой аккаунт</string>
+    <string name="myAppointments">Мои записи</string>
 
 </resources>

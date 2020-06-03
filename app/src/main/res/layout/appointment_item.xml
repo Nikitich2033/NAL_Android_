@@ -14,7 +14,16 @@
         android:layout_height="match_parent"
         android:layout_margin="4dp"
         >
+        <ImageView
+            android:id="@+id/salonLogoImg"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            app:srcCompat="@color/white"
+            android:contentDescription="@string/salon_logo" />
+
         <androidx.appcompat.widget.AppCompatImageView
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10sp"
             android:id="@+id/arrowButton"
             android:layout_width="50sp"
             android:layout_height="50sp">
@@ -31,7 +40,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/arrowButton"
+            android:layout_toEndOf="@+id/salonLogoImg"
             >
 
         </TextView>
@@ -45,7 +54,7 @@
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:layout_below="@id/AppointmentSalonName"
-            android:layout_toEndOf="@+id/arrowButton"
+            android:layout_toEndOf="@+id/salonLogoImg"
             android:text="@string/service_name"
             android:textSize="18sp">
 
@@ -57,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
             android:layout_below="@id/AppointmentServiceName"
-            android:layout_toEndOf="@id/arrowButton"
+            android:layout_toEndOf="@id/salonLogoImg"
             android:text="@string/service_date"
             android:textSize="18sp">
 
@@ -155,13 +164,14 @@
 
             </TextView>
 
-            <ImageView
-                android:id="@+id/salonLogoInExpand"
-                android:layout_width="180sp"
-                android:layout_height="180sp"
-                android:layout_below="@+id/MasterLastName"
-                app:srcCompat="@color/white"
-                android:contentDescription="@string/salon_logo" />
+            <Button
+                android:id="@+id/CancelAppointmentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/MasterFirstName"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="10sp"
+                android:text="@string/cancel_appointment" />
 
 
         </RelativeLayout>
