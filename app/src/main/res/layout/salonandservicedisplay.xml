@@ -1,6 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CVsalon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="10dp"
+    app:cardMaxElevation="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/IVLogo"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/item1" />
+
+            <TextView
+                android:id="@+id/TVname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/salonDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Посмотреть Детали Салона"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/arrowButton2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LL" />
+
+        <ImageView
+            android:id="@+id/arrowButton2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LL"
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandSalonDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/salonDetails">
+
+            <TextView
+                android:id="@+id/TVadressLine1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TVadressLine2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVadressLine1" />
+
+            <TextView
+                android:id="@+id/TVeMail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVadressLine2" />
+
+            <TextView
+                android:id="@+id/TVtel1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVeMail" />
+
+            <TextView
+                android:id="@+id/TVtel2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVtel1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/TVworkingHours"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/workingHours"
+            android:textAlignment="viewStart"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/arrowButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expandSalonDetails" />
+
+        <ImageView
+            android:id="@+id/arrowButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expandSalonDetails"
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandOpenTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TVworkingHours">
+
+            <TextView
+                android:id="@+id/TVmonday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/monday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVmondayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TVmondayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVmonday"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TVtuesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tuesday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVtuesdayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVmonday" />
+
+            <TextView
+                android:id="@+id/TVtuesdayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVtuesday"
+                app:layout_constraintTop_toBottomOf="@id/TVmondayTime" />
+
+            <TextView
+                android:id="@+id/TVwednesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/wednesday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVwednesdayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVtuesday"
+                tools:layout_editor_absoluteY="48dp" />
+
+            <TextView
+                android:id="@+id/TVwednesdayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVwednesday"
+                app:layout_constraintTop_toBottomOf="@id/TVtuesdayTime"
+                tools:layout_editor_absoluteX="196dp"
+                tools:layout_editor_absoluteY="48dp" />
+
+            <TextView
+                android:id="@+id/TVthursday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/thursday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVthursdayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVwednesday"
+                tools:layout_editor_absoluteY="72dp" />
+
+            <TextView
+                android:id="@+id/TVthursdayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVthursday"
+                app:layout_constraintTop_toBottomOf="@id/TVwednesdayTime"
+                tools:layout_editor_absoluteX="196dp"
+                tools:layout_editor_absoluteY="72dp" />
+
+            <TextView
+                android:id="@+id/TVfriday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/friday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVfridayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVthursday"
+                tools:layout_editor_absoluteY="96dp" />
+
+            <TextView
+                android:id="@+id/TVfridayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVfriday"
+                app:layout_constraintTop_toBottomOf="@id/TVthursdayTime"
+                tools:layout_editor_absoluteX="196dp"
+                tools:layout_editor_absoluteY="96dp" />
+
+            <TextView
+                android:id="@+id/TVsaturday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/saturday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVsaturdayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVfriday"
+                tools:layout_editor_absoluteY="120dp" />
+
+            <TextView
+                android:id="@+id/TVsaturdayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVsaturday"
+                app:layout_constraintTop_toBottomOf="@id/TVfridayTime"
+                tools:layout_editor_absoluteX="196dp"
+                tools:layout_editor_absoluteY="120dp" />
+
+            <TextView
+                android:id="@+id/TVsunday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/sunday"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/TVsundayTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVsaturday"
+                tools:layout_editor_absoluteY="144dp" />
+
+            <TextView
+                android:id="@+id/TVsundayTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/TVsunday"
+                app:layout_constraintTop_toBottomOf="@id/TVsaturdayTime"
+                tools:layout_editor_absoluteX="196dp"
+                tools:layout_editor_absoluteY="144dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/chooseSalon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseSalon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expandOpenTime" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
