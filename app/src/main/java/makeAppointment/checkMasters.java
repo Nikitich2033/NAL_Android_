@@ -129,7 +129,7 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
 
         @Override
         protected Void doInBackground(Void... voids) {
-            allMasters=sqlInteractions.getMasters(SalonOptions.SalonId,ServiceId);
+            allMasters=sqlInteractions.getMasters(SalonId,ServiceId);
             return null;
         }
 

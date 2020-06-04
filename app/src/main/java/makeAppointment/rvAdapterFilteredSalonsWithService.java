@@ -136,8 +136,6 @@ public class rvAdapterFilteredSalonsWithService extends RecyclerView.Adapter<rvA
                 intent.putExtra("SalonId",SalonObject.getSalonId());
                 intent.putExtra("treatmentDuration",SalonObject.getDurationMin());
                 intent.putExtra("treatmentName",SalonObject.getServiceName());
-                Log.i("lolo",SalonObject.getSalonId());
-                Log.i("lolo",SalonObject.getServiceId());
                 v.getContext().startActivity(intent);
             }
         });
