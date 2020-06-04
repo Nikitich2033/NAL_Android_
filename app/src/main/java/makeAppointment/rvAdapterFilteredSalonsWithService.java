@@ -3,6 +3,7 @@ package makeAppointment;
 import android.content.Intent;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,6 +128,19 @@ public class rvAdapterFilteredSalonsWithService extends RecyclerView.Adapter<rvA
                 }
             }
         }
+        holder.chooseTreatment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(),checkMasters.class);
+                intent.putExtra("ServiceId",SalonObject.getServiceId());
+                intent.putExtra("SalonId",SalonObject.getSalonId());
+                intent.putExtra("treatmentDuration",SalonObject.getDurationMin());
+                intent.putExtra("treatmentName",SalonObject.getServiceName());
+                Log.i("lolo",SalonObject.getSalonId());
+                Log.i("lolo",SalonObject.getServiceId());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

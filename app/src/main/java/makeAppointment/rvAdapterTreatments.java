@@ -2,6 +2,7 @@ package makeAppointment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class rvAdapterTreatments extends RecyclerView.Adapter<rvAdapterTreatment
                 intent.putExtra("ServiceId",treatmentObject.getServiceId());
                 intent.putExtra("treatmentDuration",treatmentObject.getDurationMin());
                 intent.putExtra("treatmentName",treatmentObject.getServiceName());
+                intent.putExtra("SalonId",SalonOptions.SalonId);
                 v.getContext().startActivity(intent);
             }
         });

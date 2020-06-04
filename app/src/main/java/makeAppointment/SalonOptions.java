@@ -42,8 +42,8 @@ public class SalonOptions extends AppCompatActivity {
         }
         TVSalonName=findViewById(R.id.TVSalonName);
         Intent intent=getIntent();
-        SalonId=intent.getStringExtra("SalonName");
-        TVSalonName.setText(SalonId);
+        SalonName=intent.getStringExtra("SalonName");
+        TVSalonName.setText(SalonName);
         LinearLayoutGroups = findViewById(R.id.LinearLayoutGroups);
         allLLs = new LinearLayout[]{findViewById(R.id.LLHair), findViewById(R.id.LLFace), findViewById(R.id.LLmakeUP),
                 findViewById(R.id.LLNails), findViewById(R.id.LLBody), findViewById(R.id.LLhairRemoval),

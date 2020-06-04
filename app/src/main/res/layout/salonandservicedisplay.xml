@@ -180,6 +180,16 @@
             </LinearLayout>
         </ScrollView>
 
+        <Button
+            android:id="@+id/chooseTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Выбрать Эту Процедуру"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expandableImages" />
+
         <TextView
             android:id="@+id/TVsalonDetails"
             android:layout_width="0dp"
@@ -188,14 +198,14 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/arrowButton2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expandableImages" />
+            app:layout_constraintTop_toBottomOf="@id/chooseTreatment" />
 
         <ImageView
             android:id="@+id/arrowButton2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expandableImages"
+            app:layout_constraintTop_toBottomOf="@id/chooseTreatment"
             app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

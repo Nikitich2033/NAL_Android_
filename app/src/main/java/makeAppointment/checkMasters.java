@@ -36,6 +36,7 @@ import mySQLInteractions.sqlInteractions;
 
 public class checkMasters extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     private static String ServiceId;
+    private static String SalonId;
     private ArrayList<Master> allMasters;
     private ListView LVMasters;
     private static String MasterId;
@@ -58,6 +59,11 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         int width=dm.widthPixels;
         int height=dm.heightPixels;
         getWindow().setLayout((int)(width*.9),(int)(height*.6));
+        Intent intent=getIntent();
+        ServiceId=intent.getStringExtra("ServiceId");
+        SalonId=intent.getStringExtra("SalonId");
+        treatmentDuration=intent.getIntExtra("treatmentDuration",0);
+        treatmentName=intent.getStringExtra("treatmentName");
         LVMasters=findViewById(R.id.LVMasters);
         progressBar6=findViewById(R.id.progressBar6);
         new getMastersAsync().execute();
@@ -110,7 +116,7 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         this.month=month+1;
         this.year=year;
         Intent intent=new Intent(this,checkTimeAndChooseComplete.class);
-        intent.putExtra("SalonId",SalonOptions.SalonId);
+        intent.putExtra("SalonId",SalonId);
         intent.putExtra("ServiceId",ServiceId);
         intent.putExtra("MasterId",MasterId);
         intent.putExtra("checkDate",String.valueOf(this.year+"-"+this.month+"-"+this.day));
@@ -123,10 +129,6 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Intent intent=getIntent();
-            ServiceId=intent.getStringExtra("ServiceId");
-            treatmentDuration=intent.getIntExtra("treatmentDuration",0);
-            treatmentName=intent.getStringExtra("treatmentName");
             allMasters=sqlInteractions.getMasters(SalonOptions.SalonId,ServiceId);
             return null;
         }
