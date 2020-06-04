@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -21,7 +20,7 @@ import com.example.nal.R;
 import java.sql.Time;
 import java.util.ArrayList;
 
-public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilteredSalons.salonObjectHolder>{
+public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilteredSalons.salonObjectHolder> {
     private ArrayList<salonObject> salonObjects=new ArrayList<>();
 
     public rvAdapterFilteredSalons(ArrayList<salonObject> salonObjects){
@@ -71,31 +70,44 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
             else {
                 daysTVs[i].setText("Закрыт");
             }
-            holder.TVworkingHours.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (holder.expandOpenTime.getVisibility()==View.GONE){
-                        TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
-                        holder.expandOpenTime.setVisibility(View.VISIBLE);
-                        holder.arrowBtn.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
-                    } else {
-                        TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
-                        holder.expandOpenTime.setVisibility(View.GONE);
-                        holder.arrowBtn.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
-                    }
-                }
-            });
-            holder.chooseSalon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(v.getContext(),SalonOptions.class);
-                    intent.putExtra("SalonId",SalonObject.getSalonId());
-                    intent.putExtra("SalonName",SalonObject.getName());
-                    v.getContext().startActivity(intent);
-
-                }
-            });
         }
+        holder.TVworkingHours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.expandOpenTime.getVisibility()==View.GONE){
+                    TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
+                    holder.expandOpenTime.setVisibility(View.VISIBLE);
+                    holder.arrowButton.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+                } else {
+                    TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
+                    holder.expandOpenTime.setVisibility(View.GONE);
+                    holder.arrowButton.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+                }
+            }
+        });
+        holder.TVsalonDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.expandSalonDetails.getVisibility()==View.GONE){
+                    TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
+                    holder.expandSalonDetails.setVisibility(View.VISIBLE);
+                    holder.arrowButton2.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp);
+                } else {
+                    TransitionManager.beginDelayedTransition(holder.CVsalon, new AutoTransition());
+                    holder.expandSalonDetails.setVisibility(View.GONE);
+                    holder.arrowButton2.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp);
+                }
+            }
+        });
+        holder.chooseSalon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(),SalonOptions.class);
+                intent.putExtra("SalonId",SalonObject.getSalonId());
+                intent.putExtra("SalonName",SalonObject.getName());
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 
@@ -107,9 +119,12 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
     class salonObjectHolder extends RecyclerView.ViewHolder{
         private Button chooseSalon;
         private TextView TVworkingHours;
+        private TextView TVsalonDetails;
         private ConstraintLayout expandOpenTime;
+        private ConstraintLayout expandSalonDetails;
         private CardView CVsalon;
-        private ImageView arrowBtn;
+        private ImageView arrowButton;
+        private ImageView arrowButton2;
         private TextView TVmonday;
         private TextView TVtuesday;
         private TextView TVwednesday;
@@ -133,7 +148,7 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
         private ImageView IVLogo;
         public salonObjectHolder(@NonNull View itemView) {
             super(itemView);
-            arrowBtn=itemView.findViewById(R.id.arrowButton);
+            arrowButton=itemView.findViewById(R.id.arrowButton);
             CVsalon=itemView.findViewById(R.id.CVsalon);
             expandOpenTime=itemView.findViewById(R.id.expandOpenTime);
             chooseSalon=itemView.findViewById(R.id.chooseSalon);
@@ -159,6 +174,9 @@ public class rvAdapterFilteredSalons extends RecyclerView.Adapter<rvAdapterFilte
             TVsaturdayTime=itemView.findViewById(R.id.TVsaturdayTime);
             TVsundayTime=itemView.findViewById(R.id.TVsundayTime);
             IVLogo=itemView.findViewById(R.id.IVLogo);
+            expandSalonDetails=itemView.findViewById(R.id.expandSalonDetails);
+            TVsalonDetails=itemView.findViewById(R.id.TVsalonDetails);
+            arrowButton2=itemView.findViewById(R.id.arrowButton2);
         }
     }
 }

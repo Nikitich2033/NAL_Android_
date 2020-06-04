@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/LL"
@@ -36,66 +36,95 @@
                 android:id="@+id/TVname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="1"
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textSize="18sp" />
         </LinearLayout>
 
+
         <TextView
-            android:id="@+id/TVadressLine1"
+            android:id="@+id/TVsalonDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
+            android:text="Посмотреть Детали Салона"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/arrowButton2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/LL" />
 
-        <TextView
-            android:id="@+id/TVadressLine2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textSize="18sp"
+        <ImageView
+            android:id="@+id/arrowButton2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TVadressLine1" />
+            app:layout_constraintTop_toBottomOf="@id/LL"
+            app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
-        <TextView
-            android:id="@+id/TVeMail"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandSalonDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textSize="18sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TVadressLine2" />
+            app:layout_constraintTop_toBottomOf="@id/TVsalonDetails">
 
-        <TextView
-            android:id="@+id/TVtel1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TVeMail" />
+            <TextView
+                android:id="@+id/TVadressLine1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/TVtel2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TVtel1" />
+            <TextView
+                android:id="@+id/TVadressLine2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVadressLine1" />
+
+            <TextView
+                android:id="@+id/TVeMail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVadressLine2" />
+
+            <TextView
+                android:id="@+id/TVtel1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVeMail" />
+
+            <TextView
+                android:id="@+id/TVtel2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVtel1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/TVworkingHours"
@@ -106,15 +135,14 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/arrowButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/TVtel2" />
+            app:layout_constraintTop_toBottomOf="@id/expandSalonDetails" />
 
         <ImageView
             android:id="@+id/arrowButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:layout_constraintBottom_toTopOf="@id/expandOpenTime"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/TVtel2"
+            app:layout_constraintTop_toBottomOf="@id/expandSalonDetails"
             app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

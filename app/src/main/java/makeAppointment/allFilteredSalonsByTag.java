@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.example.nal.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import home.home;
 import mySQLInteractions.sqlInteractions;
@@ -55,7 +56,8 @@ public class allFilteredSalonsByTag extends AppCompatActivity {
             tag=intent.getIntExtra("tag",0);
             StringBuilder allIDsString=sqlInteractions.getSalonIds(tag);
             String[] SalonIds=allIDsString.toString().split("#");
-            salonObjects=sqlInteractions.getObjectsSalon(SalonIds);
+            HashMap<String,String> hm=sqlInteractions.getSalonIds2(tag);
+            salonObjects=sqlInteractions.getObjectsSalon2(SalonIds,hm);
             return null;
         }
 
@@ -63,9 +65,9 @@ public class allFilteredSalonsByTag extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressBar2.setVisibility(View.INVISIBLE);
-            rvAdapterFilteredSalons RVAdapterFilteredSalons=new rvAdapterFilteredSalons(salonObjects);
+            rvAdapterFilteredSalonsWithService RVAdapterFilteredSalonsWithService=new rvAdapterFilteredSalonsWithService(salonObjects);
             RVfoundSalonsByTag.setLayoutManager(new LinearLayoutManager(allFilteredSalonsByTag.this));
-            RVfoundSalonsByTag.setAdapter(RVAdapterFilteredSalons);
+            RVfoundSalonsByTag.setAdapter(RVAdapterFilteredSalonsWithService);
         }
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CVsalon"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="6dp"
     app:cardElevation="10dp"
@@ -36,28 +36,166 @@
                 android:id="@+id/TVname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="1"
                 android:text="TextView"
                 android:textAlignment="viewStart"
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/LL1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LL">
+
+            <TextView
+                android:id="@+id/treatmentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/treatmentName"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/treatmentNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LL1">
+
+            <TextView
+                android:id="@+id/treatmentDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/treatmentDuration"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/treatmentDurationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LL3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LL2">
+
+            <TextView
+                android:id="@+id/treatmentPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/treatmentPrice"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/treatmentPriceTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/expandableImages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LL3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.zolad.zoominimageview.ZoomInImageView
+                    android:id="@+id/IV1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/item1" />
+
+                <com.zolad.zoominimageview.ZoomInImageView
+                    android:id="@+id/IV2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/item1" />
+
+                <com.zolad.zoominimageview.ZoomInImageView
+                    android:id="@+id/IV3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/item1" />
+
+                <com.zolad.zoominimageview.ZoomInImageView
+                    android:id="@+id/IV4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/item1" />
+
+                <com.zolad.zoominimageview.ZoomInImageView
+                    android:id="@+id/IV5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/item1" />
+            </LinearLayout>
+        </ScrollView>
+
         <TextView
-            android:id="@+id/salonDetails"
+            android:id="@+id/TVsalonDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Посмотреть Детали Салона"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/arrowButton2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/LL" />
+            app:layout_constraintTop_toBottomOf="@id/expandableImages" />
 
         <ImageView
             android:id="@+id/arrowButton2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/LL"
+            app:layout_constraintTop_toBottomOf="@id/expandableImages"
             app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +205,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/salonDetails">
+            app:layout_constraintTop_toBottomOf="@id/TVsalonDetails">
 
             <TextView
                 android:id="@+id/TVadressLine1"

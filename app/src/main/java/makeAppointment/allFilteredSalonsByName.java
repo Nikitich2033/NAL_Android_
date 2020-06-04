@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.example.nal.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import home.home;
 import mySQLInteractions.sqlInteractions;
@@ -40,7 +41,6 @@ public class allFilteredSalonsByName extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         new getIDsAsyncAndObjects().execute();
-        Log.i("koko","llll");
     }
 
     @Override
@@ -61,7 +61,8 @@ public class allFilteredSalonsByName extends AppCompatActivity {
             ServiceName=intent.getStringExtra("ServiceName");
             StringBuilder allIDsString=sqlInteractions.getSalonIds(ServiceName);
             String[] SalonIds=allIDsString.toString().split("#");
-            salonObjects=sqlInteractions.getObjectsSalon(SalonIds);
+            HashMap<String,String> hm=sqlInteractions.getSalonIds2(ServiceName);
+            salonObjects=sqlInteractions.getObjectsSalon2(SalonIds,hm);
             return null;
         }
 
@@ -69,9 +70,9 @@ public class allFilteredSalonsByName extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressBar1.setVisibility(View.INVISIBLE);
-            rvAdapterFilteredSalons RVAdapterFilteredSalons=new rvAdapterFilteredSalons(salonObjects);
+            rvAdapterFilteredSalonsWithService RVAdapterFilteredSalonsWithService=new rvAdapterFilteredSalonsWithService(salonObjects);
             RVfoundSalonsByName.setLayoutManager(new LinearLayoutManager(allFilteredSalonsByName.this));
-            RVfoundSalonsByName.setAdapter(RVAdapterFilteredSalons);
+            RVfoundSalonsByName.setAdapter(RVAdapterFilteredSalonsWithService);
         }
     }
 

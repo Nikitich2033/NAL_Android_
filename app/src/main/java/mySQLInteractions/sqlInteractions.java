@@ -28,6 +28,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 
 import makeAppointment.Master;
@@ -178,9 +179,6 @@ public class sqlInteractions {
 
         return salonBitmap;
     }
-
-
-
     public static ArrayList<AppointmentObject> getUserFutureAppointments(String UserName){
 
 
@@ -268,7 +266,6 @@ public class sqlInteractions {
 
 
     }
-
     public static ArrayList<AppointmentObject> getUserPastAppointments(String UserName){
 
 
@@ -357,7 +354,6 @@ public class sqlInteractions {
 
 
     }
-
     public static ArrayList<String> getTreatmentsNames(){
         Connection connection = null;
         try {
@@ -383,6 +379,253 @@ public class sqlInteractions {
         }
         return null;
     }
+
+
+    public static HashMap<String,String> getSalonIds2(String ServiceName){
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_allSalons?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT * FROM alexandr_allSalons.alltreatmentsbyname where ServiceName=?;";
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            statement.setString(1, ServiceName);
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<String> result = new ArrayList<>();
+            ArrayList<String> result1 = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getString("Salons"));
+                result1.add(resultSet.getString("Services"));
+            }
+            connection.close();
+            String[] array1=result.get(0).split("#");
+            String[] array2=result1.get(0).split("#");
+            HashMap<String,String> hm=new HashMap();
+            for(int i=0;i<array1.length;i=i+1){
+                hm.put(array1[i],array2[i]);
+            }
+            return hm;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static HashMap<String,String> getSalonIds2(int tag){
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_allSalons?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT * FROM alexandr_allSalons.alltreatmentsbytags where tag=?;";
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            statement.setInt(1, tag);
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<String> result = new ArrayList<>();
+            ArrayList<String> result1 = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getString("Salons"));
+                result1.add(resultSet.getString("Services"));
+            }
+            connection.close();
+            String[] array1=result.get(0).split("#");
+            String[] array2=result1.get(0).split("#");
+            HashMap<String,String> hm=new HashMap();
+            for(int i=0;i<array1.length;i=i+1){
+                hm.put(array1[i],array2[i]);
+            }
+            return hm;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static ArrayList<salonObject> getObjectsSalon2(String[] SalonIds,HashMap<String,String> SalonMap){
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_allSalons?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Connection connection2 = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection2 = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ArrayList<salonObject> salons=new ArrayList<>();
+        for(int i=0;i<SalonIds.length;i=i+1) {
+            String SalonId=SalonIds[i];
+            String name = "";
+            String adressLine1 = "";
+            String adressLine2 = "";
+            String eMail = "";
+            String tel1 = "";
+            String tel2 = "";
+            ArrayList<Time> openTimes = new ArrayList<>();
+            Bitmap LogoImage=null;
+            String ServiceId=SalonMap.get(SalonId);
+            String ServiceName = "";
+            int DurationMin = 0;
+            double Price = 0.0;
+            ArrayList<Bitmap> imageBitmaps = new ArrayList<>();
+
+            String sqlSatatement = "SELECT * FROM alexandr_allSalons.SalonDetails where SalonId=?;";
+            try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+                statement.setString(1, SalonId);
+                ResultSet resultSet = statement.executeQuery();
+                ArrayList<String> result1 = new ArrayList<>();
+                ArrayList<String> result2 = new ArrayList<>();
+                ArrayList<String> result3 = new ArrayList<>();
+                ArrayList<String> result4 = new ArrayList<>();
+                ArrayList<String> result5 = new ArrayList<>();
+                ArrayList<String> result6 = new ArrayList<>();
+                ArrayList<Time> result7 = new ArrayList<>();
+                ArrayList<Time> result8 = new ArrayList<>();
+                ArrayList<Time> result9 = new ArrayList<>();
+                ArrayList<Time> result10 = new ArrayList<>();
+                ArrayList<Time> result11= new ArrayList<>();
+                ArrayList<Time> result12 = new ArrayList<>();
+                ArrayList<Time> result13 = new ArrayList<>();
+                ArrayList<Time> result14 = new ArrayList<>();
+                ArrayList<Time> result15 = new ArrayList<>();
+                ArrayList<Time> result16 = new ArrayList<>();
+                ArrayList<Time> result17 = new ArrayList<>();
+                ArrayList<Time> result18 = new ArrayList<>();
+                ArrayList<Time> result19 = new ArrayList<>();
+                ArrayList<Time> result20 = new ArrayList<>();
+                ArrayList<String> result21 = new ArrayList<>();
+                while (resultSet.next()) {
+                    result1.add(resultSet.getString("name"));
+                    result2.add(resultSet.getString("addressLine1"));
+                    result3.add(resultSet.getString("addressLine2"));
+                    result4.add(resultSet.getString("eMail"));
+                    result5.add(resultSet.getString("tel1"));
+                    result6.add(resultSet.getString("tel2"));
+                    result7.add(resultSet.getTime("mondayStart"));
+                    result8.add(resultSet.getTime("mondayEnd"));
+                    result9.add(resultSet.getTime("tuesdayStart"));
+                    result10.add(resultSet.getTime("tuesdayEnd"));
+                    result11.add(resultSet.getTime("wednesdayStart"));
+                    result12.add(resultSet.getTime("wednesdayEnd"));
+                    result13.add(resultSet.getTime("thursdayStart"));
+                    result14.add(resultSet.getTime("thursdayEnd"));
+                    result15.add(resultSet.getTime("fridayStart"));
+                    result16.add(resultSet.getTime("fridayEnd"));
+                    result17.add(resultSet.getTime("saturdayStart"));
+                    result18.add(resultSet.getTime("saturdayEnd"));
+                    result19.add(resultSet.getTime("sundayStart"));
+                    result20.add(resultSet.getTime("sundayEnd"));
+                    result21.add(resultSet.getString("LogoImage"));
+                }
+                name = result1.get(0);
+                adressLine1 = result2.get(0);
+                adressLine2 = result3.get(0);
+                eMail = result4.get(0);
+                tel1 = result5.get(0);
+                tel2 = result6.get(0);
+                openTimes.add(result7.get(0));
+                openTimes.add(result8.get(0));
+                openTimes.add(result9.get(0));
+                openTimes.add(result10.get(0));
+                openTimes.add(result11.get(0));
+                openTimes.add(result12.get(0));
+                openTimes.add(result13.get(0));
+                openTimes.add(result14.get(0));
+                openTimes.add(result15.get(0));
+                openTimes.add(result16.get(0));
+                openTimes.add(result17.get(0));
+                openTimes.add(result18.get(0));
+                openTimes.add(result19.get(0));
+                openTimes.add(result20.get(0));
+                LogoImage=decodeImage(result21.get(0));
+            }
+            catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            String sqlSatatement1 = "SELECT * FROM alexandr_salonsSpecial." + SalonId + "Offers where ServiceId=?;";
+            try (PreparedStatement statement = connection2.prepareStatement((sqlSatatement1))) {
+                statement.setString(1, ServiceId);
+                ResultSet resultSet = statement.executeQuery();
+                ArrayList<String> result1 = new ArrayList<>();
+                ArrayList<Integer> result2 = new ArrayList<>();
+                ArrayList<Double> result3 = new ArrayList<>();
+                ArrayList<Integer> result4 = new ArrayList<>();
+                ArrayList<String> result5 = new ArrayList<>();
+                ArrayList<String> result6 = new ArrayList<>();
+                ArrayList<String> result7 = new ArrayList<>();
+                ArrayList<String> result8 = new ArrayList<>();
+                ArrayList<String> result9 = new ArrayList<>();
+                while (resultSet.next()) {
+                    result1.add(resultSet.getString("ServiceName"));
+                    result2.add(resultSet.getInt("DurationMin"));
+                    result3.add(resultSet.getDouble("Price"));
+                    result4.add(resultSet.getInt("Tag"));
+                    result5.add(resultSet.getString("imageString1"));
+                    result6.add(resultSet.getString("imageString2"));
+                    result7.add(resultSet.getString("imageString3"));
+                    result8.add(resultSet.getString("imageString4"));
+                    result9.add(resultSet.getString("imageString5"));
+                }
+                ServiceName = result1.get(0);
+                DurationMin = result2.get(0);
+                Price = result3.get(0);
+                if(result5.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result5.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result6.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result6.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result7.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result7.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result8.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result8.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+                if(result9.get(0)!=null){
+                    imageBitmaps.add(decodeImage(result9.get(0)));
+                }else {
+                    imageBitmaps.add(null);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            salons.add(new salonObject(SalonId,name,adressLine1,adressLine2,eMail,tel1,tel2,openTimes,LogoImage,ServiceId,ServiceName,DurationMin,Price,imageBitmaps));
+        }
+        try {
+            connection2.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return salons;
+    }
+
+
     public static StringBuilder getSalonIds(String ServiceName){
         Connection connection = null;
         try {
@@ -569,6 +812,8 @@ public class sqlInteractions {
 
        return salons;
    }
+
+
     public static ArrayList<String> getTreatmentsIds(String SalonId){
         Connection connection = null;
         try {
