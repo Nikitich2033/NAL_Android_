@@ -3,9 +3,7 @@ package showUserAppointments;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
@@ -23,8 +21,8 @@ import mySQLInteractions.sqlInteractions;
 
 public class PersonalAppointmentsList extends AppCompatActivity {
 
-    private RecyclerView appointmentsRecyclerView;
-    private RecyclerView.Adapter Adapter;
+    public RecyclerView appointmentsRecyclerView;
+    public static RecyclerView.Adapter appointmentsAdapter;
     private RecyclerView.LayoutManager LayoutManager;
     private ArrayList<AppointmentObject> appointmentList;
     private String UserID = "nikitalyakhovoy@gmail.com";
@@ -78,9 +76,9 @@ public class PersonalAppointmentsList extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressBar1.setVisibility(View.INVISIBLE);
-            Adapter = new AppointmentsListAdapter(appointmentList);
+            appointmentsAdapter = new AppointmentsListAdapter(appointmentList);
             appointmentsRecyclerView.setLayoutManager(LayoutManager);
-            appointmentsRecyclerView.setAdapter(Adapter);
+            appointmentsRecyclerView.setAdapter(appointmentsAdapter);
 
         }
     }

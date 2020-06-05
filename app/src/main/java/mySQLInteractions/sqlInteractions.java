@@ -354,6 +354,48 @@ public class sqlInteractions {
 
 
     }
+
+    public static void deleteAppointment(String userID, String salonID, String date, String serviceID, String startTime, String endTime){
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement1 =
+                "DELETE FROM alexandr_usersLog.allApointments " + "WHERE UserId = "
+                        + "\"" +userID +"\""+ " and SalonId = "+"\""+ salonID +"\""+" and ServiceId = " +"\""+ serviceID+"\"" +" and Date = "+"\""+ date +"\""+";" ;
+
+        String sqlSatatement2 =  "DELETE FROM alexandr_salonsSpecial.Inter"+salonID+"Appointments "+
+                                "WHERE UserId = " + "\""+userID +"\""+ " and ServiceId = " + "\""+serviceID+"\"" + " and Date = "+ "\"" +date +"\"" +
+                                 " and StartTime = "+"\""+startTime+"\""+" and EndTime = "+"\""+endTime+"\""+"; ";
+
+
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement1))) {
+            statement.executeUpdate();
+            try (PreparedStatement statement1 = connection.prepareStatement((sqlSatatement2))) {
+                statement1.executeUpdate();
+
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
     public static ArrayList<String> getTreatmentsNames(){
         Connection connection = null;
         try {
