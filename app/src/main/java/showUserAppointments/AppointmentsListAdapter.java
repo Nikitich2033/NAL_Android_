@@ -1,5 +1,6 @@
 package showUserAppointments;
 
+import android.os.AsyncTask;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
@@ -16,17 +17,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nal.R;
 
+
 import java.util.ArrayList;
+
+import static mySQLInteractions.sqlInteractions.deleteAppointment;
 
 public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsListAdapter.AppointmentsViewHolder> {
 
     private ArrayList<AppointmentObject> AppointmentsList;
 
-    public static class AppointmentsViewHolder extends RecyclerView.ViewHolder{
+    public class AppointmentsViewHolder extends RecyclerView.ViewHolder{
         public ImageView arrowImg;
         public ImageView salonLogo;
         public Button cancelAppointment;
         public TextView SalonName;
+        public String SalonID;
+        public String UserID;
+        public String serviceID;
         public TextView MasterFirst;
         public TextView MasterLast;
         public TextView ServiceName;
@@ -39,6 +46,7 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
 
         public AppointmentsViewHolder(@NonNull View itemView) {
             super(itemView);
+
             arrowImg = itemView.findViewById(R.id.arrowButton);
             salonLogo = itemView.findViewById(R.id.salonLogoImg);
             cancelAppointment = itemView.findViewById(R.id.CancelAppointmentButton);
@@ -51,11 +59,14 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
             EndTime = itemView.findViewById(R.id.AppointmentEndTime);
             RLExpandAppointment = itemView.findViewById(R.id.ExpandAppoitnmentDetails);
             CVappointment = itemView.findViewById(R.id.CVappointment);
+
+
         }
     }
 
     public AppointmentsListAdapter(ArrayList<AppointmentObject> appointmentsList){
         AppointmentsList = appointmentsList;
+
     }
 
     @NonNull
@@ -66,10 +77,40 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
         return APH;
     }
 
+    class AsyncDeleteAppointment extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            System.out.println("ASYNC DELETE 1");
+        }
+
+        @Override
+        protected Void doInBackground(String... pStrings) {
+
+            String userID,salonID,date,serviceID,startTime,endTime;
+            userID = pStrings[0];
+            salonID = pStrings[1];
+            date = pStrings[2];
+            serviceID = pStrings[3];
+            startTime = pStrings[4];
+            endTime= pStrings[5];
+
+
+            deleteAppointment(userID,salonID,date,serviceID,startTime,endTime);
+
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(Void a) {
+            System.out.println("ASYNC DELETE 3");
+        }
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull final AppointmentsViewHolder holder, int position) {
-        AppointmentObject currentAppointment = AppointmentsList.get(position);
+    public void onBindViewHolder(@NonNull final AppointmentsViewHolder holder, final int position) {
+        final AppointmentObject currentAppointment = AppointmentsList.get(position);
 
 
         holder.MasterFirst.setText(currentAppointment.getMasterFirst());
@@ -100,10 +141,21 @@ public class AppointmentsListAdapter extends RecyclerView.Adapter<AppointmentsLi
 
         });
 
+        holder.SalonID = currentAppointment.getSalonId();
+        holder.UserID = "nikitalyakhovoy@gmail.com";
+        holder.serviceID = currentAppointment.getServiceId();
+
         holder.cancelAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.CVappointment.setVisibility(View.GONE);
+                AppointmentsList.remove(position);
+
+                PersonalAppointmentsList.appointmentsAdapter.notifyItemRemoved(position);
+                String[] param = {holder.UserID,holder.SalonID,currentAppointment.serviceDate,holder.serviceID,currentAppointment.serviceStartTime,currentAppointment.serviceEndTime};
+                new AsyncDeleteAppointment().execute(param);
+
+
             }
         });
 
