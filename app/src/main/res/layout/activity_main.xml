@@ -1,18 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/homebg"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/loginLogo"
+                android:layout_width="226dp"
+                android:layout_height="91dp"
+                android:layout_marginLeft="67dp"
+                android:layout_marginTop="80dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/looq_logo"
+                />
+            <TextView
+                android:id="@+id/loginExplain"
+                android:layout_below="@+id/loginLogo"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:text="Сервис букинга\n услуг салонов красоты"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/RLloginbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/loginExplain"
+                >
+
+                <ImageView
+                    android:id="@+id/loginBox"
+                    android:layout_width="270dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="43dp"
+                    android:layout_marginBottom="23dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/login_rectangle"
+                    android:shadowColor="@color/cardview_dark_background"
+                    />
+
+
+                <EditText
+                    android:id="@+id/loginHint"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:hint="Введите логин (ваш email)              "
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:inputType="textEmailAddress"
+                    />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/RLpassbox"
+                android:layout_below="@+id/RLloginbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            >
+
+            <ImageView
+                android:id="@+id/passwordBox"
+                android:layout_width="270dp"
+                android:layout_height="45dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/login_rectangle"
+                android:shadowColor="@color/cardview_dark_background"
+                />
+
+
+                <EditText
+                    android:id="@+id/passHint"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:hint="Введите пароль                                 "
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:inputType="textPassword" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+            android:id="@+id/RLsigninbutton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/RLpassbox"
+            >
+
+            <Button
+                android:id="@+id/signinButton"
+                android:layout_marginTop="23dp"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:text="Войти"
+                android:backgroundTint="@color/white"
+                android:textColor="#1983AB"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:onClick="onClickSignInButton"
+                android:shadowColor="@color/cardview_dark_background"
+                >
+            </Button>
+
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/RLorGraphic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/RLsigninbutton"
+                >
+                <ImageView
+                    android:id="@+id/firstLine"
+                    android:layout_marginLeft="42.5dp"
+                    android:layout_marginTop="34dp"
+                    android:layout_width="110dp"
+                    android:layout_height="5dp"
+                    android:src="@drawable/login_line"
+                   
+                    />
+                <TextView
+                    android:id="@+id/ili"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="ИЛИ"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="9.5dp"
+                    android:layout_marginRight="9.5dp"
+                    android:textColor="@color/white"
+                    android:layout_toEndOf="@+id/firstLine"
+                    />
+                <ImageView
+                    android:id="@+id/secondLine"
+                    android:layout_marginRight="42.5dp"
+                    android:layout_marginTop="34dp"
+                    android:layout_width="110dp"
+                    android:layout_height="5dp"
+                    android:src="@drawable/login_line"
+                    android:layout_toEndOf="@+id/ili"
+                    />
+                
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RLsignupbutton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/RLorGraphic"
+            >
+
+            <Button
+                android:layout_marginTop="23dp"
+                android:layout_width="220dp"
+                android:layout_height="55dp"
+                android:layout_centerHorizontal="true"
+                android:text="Зарегистрироваться"
+                android:backgroundTint="@color/white"
+                android:textColor="#1983AB"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                android:onClick="onClickSignUpButton"
+                android:shadowColor="@color/cardview_dark_background"
+
+                >
+            </Button>
+
+
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
