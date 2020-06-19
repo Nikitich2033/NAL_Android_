@@ -3,6 +3,7 @@ package home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,12 @@ public class home extends AppCompatActivity {
         if(actionBar!=null){
             actionBar.hide();
         }
+        Intent start = getIntent();
+        TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
+        myAwesomeTextView.setText("Добрый день, "+start.getStringExtra("WelcomeName"));
+
+
+
     }
 
     public void onClickAccountSettings(View view) {

@@ -63,6 +63,8 @@ public class sqlInteractions {
             e.printStackTrace();
         }
     }
+
+
     public static String getUserDetail(String userID,String userDetail){
         Connection connection = null;
         try {
@@ -89,6 +91,7 @@ public class sqlInteractions {
         }
         return null;
     }
+
     public static void deleteUser(String UserId){
         Connection connection = null;
         try {
@@ -110,6 +113,7 @@ public class sqlInteractions {
             e.printStackTrace();
         }
     }
+
     public static void changeUserDetail(String UserId,String userDetail,String newValue){
         Connection connection = null;
         try {
@@ -432,6 +436,39 @@ public class sqlInteractions {
         }
 
         return false;
+    }
+
+    public static ArrayList<String> getFirstSecondName (String userID){
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT Name, secondName FROM alexandr_usersEnter.personalDetails" +
+                " where UserId ="+ "\""+userID+"\"" +";";
+
+        ArrayList<String> result = null;
+
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            ResultSet resultSet = statement.executeQuery();
+            result = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getString("Name"));
+                result.add(resultSet.getString("secondName"));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     public static ArrayList<String> getTreatmentsNames(){

@@ -22,6 +22,7 @@ import showUserAppointments.AppointmentsListAdapter;
 
 import static mySQLInteractions.sqlInteractions.CheckLogIn;
 import static mySQLInteractions.sqlInteractions.deleteAppointment;
+import static mySQLInteractions.sqlInteractions.getFirstSecondName;
 import static mySQLInteractions.sqlInteractions.getSHA256Hash;
 
 
@@ -34,10 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent=new Intent(this, home.class);
-        startActivity(intent);
-
-
 
     }
 
@@ -66,6 +63,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    class AsyncGetUserName extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            System.out.println("ASYNC CHECK 1");
+        }
+
+        @Override
+        protected String doInBackground(String... string) {
+
+
+            String userID  = string[0];
+
+            ArrayList<String> FirstSecondName =  getFirstSecondName(userID);
+            String result = FirstSecondName.get(0)+" "+ FirstSecondName.get(1);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String test) {
+
+        }
+
+    }
+
     public void onClickSignInButton(View view) throws ExecutionException, InterruptedException {
         enteredEmail = findViewById(R.id.loginHint);
         enteredPass = findViewById(R.id.passHint);
@@ -83,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+
+            String firstSecond = new AsyncGetUserName().execute(email).get();
+
+            Intent intent=new Intent(this, home.class);
+            intent.putExtra("WelcomeName",firstSecond);
+            startActivity(intent);
+
         }
         else{
             Context context = getApplicationContext();
