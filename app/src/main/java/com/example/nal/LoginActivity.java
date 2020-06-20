@@ -8,25 +8,21 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import Constants.PreferenceUtils;
 import home.home;
-import makeAppointment.makeAppointmentByMainTags;
-import mySQLInteractions.sqlInteractions;
-import showUserAppointments.AppointmentsListAdapter;
 
 import static mySQLInteractions.sqlInteractions.CheckLogIn;
-import static mySQLInteractions.sqlInteractions.deleteAppointment;
 import static mySQLInteractions.sqlInteractions.getFirstSecondName;
 import static mySQLInteractions.sqlInteractions.getSHA256Hash;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText enteredEmail;
     EditText enteredPass;
@@ -34,7 +30,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
+
+        if(PreferenceUtils.getEmailFromPrefs(this) != null){
+            Intent intent = new Intent(LoginActivity.this,home.class);
+            startActivity(intent);
+        }
+        else{
+
+        }
 
     }
 
@@ -107,9 +111,17 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
 
             String firstSecond = new AsyncGetUserName().execute(email).get();
+            PreferenceUtils.saveWelcomeName(firstSecond,this);
+
+            RadioButton rb = findViewById(R.id.ButtonRememberDetails);
+            if (rb.isChecked()){
+                PreferenceUtils.saveEmailtoPrefs(email,this);
+                PreferenceUtils.savePassToPrefs(pass,this);
+            }
+
+            PreferenceUtils.saveWelcomeName(firstSecond,this);
 
             Intent intent=new Intent(this, home.class);
-            intent.putExtra("WelcomeName",firstSecond);
             startActivity(intent);
 
         }

@@ -37,7 +37,7 @@
         <activity android:name="showUserAppointments.PersonalAppointmentsList" />
         <activity android:name="showUserAppointments.SeeMyAppointments" />
         <activity android:name="home.home" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

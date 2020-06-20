@@ -1,5 +1,7 @@
 package home;
 
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nal.R;
 
+import Constants.PreferenceUtils;
 import makeAppointment.makeAppointment;
 import showUserAppointments.SeeMyAppointments;
-
 
 public class home extends AppCompatActivity {
 
@@ -26,9 +28,7 @@ public class home extends AppCompatActivity {
         }
         Intent start = getIntent();
         TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
-        myAwesomeTextView.setText("Добрый день, "+start.getStringExtra("WelcomeName"));
-
-
+        myAwesomeTextView.setText("Добрый день, " + PreferenceUtils.getWelcomeNameFromPrefs(this));
 
     }
 

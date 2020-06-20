@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/homebg"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -130,7 +130,19 @@
                 >
             </Button>
 
-        </RelativeLayout>
+                <RadioButton
+                    android:id="@+id/ButtonRememberDetails"
+                    android:layout_below="@+id/signinButton"
+                    android:layout_alignStart="@+id/signinButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  Запомнить данные"
+                    android:buttonTint="@color/white"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/RLorGraphic"
