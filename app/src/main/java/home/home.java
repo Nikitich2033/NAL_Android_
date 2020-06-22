@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nal.BackService;
 import com.example.nal.R;
 
 import Constants.PreferenceUtils;
@@ -30,6 +31,7 @@ public class home extends AppCompatActivity {
         TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
         myAwesomeTextView.setText("Добрый день, " + PreferenceUtils.getWelcomeNameFromPrefs(this));
 
+        startService(new Intent(this, BackService.class));
 
     }
 

@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            System.out.println("ASYNC CHECK 1");
+
         }
 
         @Override
@@ -115,11 +115,12 @@ public class LoginActivity extends AppCompatActivity {
 
             RadioButton rb = findViewById(R.id.ButtonRememberDetails);
             if (rb.isChecked()){
-                PreferenceUtils.saveEmailtoPrefs(email,this);
-                PreferenceUtils.savePassToPrefs(pass,this);
                 PreferenceUtils.saveRememberToPrefs("true",this);
             }
 
+
+            PreferenceUtils.saveEmailtoPrefs(email,this);
+            PreferenceUtils.savePassToPrefs(pass,this);
             PreferenceUtils.saveWelcomeName(firstSecond,this);
             PreferenceUtils.saveRememberToPrefs("false",this);
             Intent intent=new Intent(this, home.class);

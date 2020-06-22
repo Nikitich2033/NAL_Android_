@@ -41,6 +41,12 @@ public class PreferenceUtils {
         return true;
     }
 
+    public static String getRememberFromPrefs(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(Constants.KEY_REMEMBER,null);
+
+    }
+
 
     public static String getEmailFromPrefs(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NAL</string>
+    <string name="app_name">LOOQ</string>
     <string name="chooseDateAndCheckMaster">Выбрать Дату и Посмотреть Время</string>
     <string name="BusyTime">Время Занятости Матсера</string>
     <string name="chooseTime">Выбрать Время</string>
