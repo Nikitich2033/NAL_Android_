@@ -33,6 +33,15 @@ public class PreferenceUtils {
 
     }
 
+    public static  boolean saveRememberToPrefs(String bool, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putString(Constants.KEY_REMEMBER,bool);
+        prefsEditor.apply();
+        return true;
+    }
+
+
     public static String getEmailFromPrefs(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(Constants.KEY_EMAIL,null);
@@ -44,6 +53,7 @@ public class PreferenceUtils {
         return prefs.getString(Constants.KEY_PASSWORD,null);
 
     }
+
 
     public static String getWelcomeNameFromPrefs(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

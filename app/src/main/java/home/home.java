@@ -26,11 +26,15 @@ public class home extends AppCompatActivity {
         if(actionBar!=null){
             actionBar.hide();
         }
-        Intent start = getIntent();
+
         TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
         myAwesomeTextView.setText("Добрый день, " + PreferenceUtils.getWelcomeNameFromPrefs(this));
 
+
     }
+
+
+
 
     public void onClickAccountSettings(View view) {
     }

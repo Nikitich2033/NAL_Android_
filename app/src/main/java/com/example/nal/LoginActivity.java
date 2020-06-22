@@ -117,10 +117,11 @@ public class LoginActivity extends AppCompatActivity {
             if (rb.isChecked()){
                 PreferenceUtils.saveEmailtoPrefs(email,this);
                 PreferenceUtils.savePassToPrefs(pass,this);
+                PreferenceUtils.saveRememberToPrefs("true",this);
             }
 
             PreferenceUtils.saveWelcomeName(firstSecond,this);
-
+            PreferenceUtils.saveRememberToPrefs("false",this);
             Intent intent=new Intent(this, home.class);
             startActivity(intent);
 
