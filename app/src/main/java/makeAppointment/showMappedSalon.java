@@ -13,6 +13,8 @@ import com.example.nal.R;
 
 import java.util.ArrayList;
 
+import Constants.PreferenceUtils;
+
 public class showMappedSalon extends AppCompatActivity {
     private salonObject mappedSalon=mappedSalons.chosenSalon;
     private RecyclerView RVchosenOnMapSalon;
@@ -36,4 +38,14 @@ public class showMappedSalon extends AppCompatActivity {
         RVchosenOnMapSalon.setLayoutManager(new LinearLayoutManager(showMappedSalon.this));
         RVchosenOnMapSalon.setAdapter(RVAdapterFilteredSalons);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.example.nal.R;
 
+import Constants.PreferenceUtils;
 import home.home;
 
 public class makeAppointment extends AppCompatActivity {
@@ -42,4 +43,14 @@ public class makeAppointment extends AppCompatActivity {
         Intent intent=new Intent(this,makeAppointmentByMainTags.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
+    }
+
 }

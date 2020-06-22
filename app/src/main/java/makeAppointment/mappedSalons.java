@@ -41,7 +41,7 @@ import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Constants.Constants;
+import Constants.PreferenceUtils;
 import home.home;
 import mySQLInteractions.sqlInteractions;
 
@@ -72,7 +72,7 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         progressBar10=findViewById(R.id.progressBar10);
-        myMapView=(MapView) findViewById(R.id.myMapView);
+        myMapView= findViewById(R.id.myMapView);
         if (savedInstanceState != null) {
             mapViewBundle=savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
@@ -200,10 +200,14 @@ public class mappedSalons extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onDestroy() {
+    protected void onDestroy() {
         super.onDestroy();
-        myMapView.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
     }
+
 
     @Override
     public void onLowMemory() {

@@ -21,6 +21,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import Constants.PreferenceUtils;
 import home.home;
 import mySQLInteractions.sqlInteractions;
 
@@ -131,4 +132,14 @@ public class checkTimeAndChooseComplete extends AppCompatActivity implements Tim
 
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
+    }
+
 }

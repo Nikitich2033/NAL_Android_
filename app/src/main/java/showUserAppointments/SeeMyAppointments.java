@@ -47,5 +47,16 @@ public class SeeMyAppointments extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.saveWelcomeName(null, this);
+            PreferenceUtils.saveEmailtoPrefs(null, this);
+            PreferenceUtils.savePassToPrefs(null, this);
+        }
+    }
+
 }
 

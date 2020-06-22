@@ -14,10 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service
-            android:name=".BackService"
-            android:exported="false"/>
-
         <activity android:name="makeAppointment.showMappedSalon"
             android:theme="@style/AppTheme.PopUp"></activity>
         <activity android:name="makeAppointment.mappedSalons" />

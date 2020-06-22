@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.nal.BackService;
 import com.example.nal.R;
+
 
 import Constants.PreferenceUtils;
 import makeAppointment.makeAppointment;
@@ -31,7 +31,7 @@ public class home extends AppCompatActivity {
         TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
         myAwesomeTextView.setText("Добрый день, " + PreferenceUtils.getWelcomeNameFromPrefs(this));
 
-        startService(new Intent(this, BackService.class));
+
 
     }
 
@@ -51,5 +51,12 @@ public class home extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+           PreferenceUtils.clearPrefs(this);
+        }
+    }
 }

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.nal.R;
 
+import Constants.PreferenceUtils;
 import home.home;
 
 import static android.app.PendingIntent.getActivity;
@@ -108,4 +109,14 @@ public class makeAppointmentBySubTags extends AppCompatActivity {
             return super.getView(position, convertView, parent);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
+    }
+
 }

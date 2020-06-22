@@ -32,12 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(PreferenceUtils.getEmailFromPrefs(this) != null){
+        if( PreferenceUtils.getEmailFromPrefs(this) != null){
             Intent intent = new Intent(LoginActivity.this,home.class);
             startActivity(intent);
-        }
-        else{
-
         }
 
     }
@@ -116,13 +113,18 @@ public class LoginActivity extends AppCompatActivity {
             RadioButton rb = findViewById(R.id.ButtonRememberDetails);
             if (rb.isChecked()){
                 PreferenceUtils.saveRememberToPrefs("true",this);
+                PreferenceUtils.saveEmailtoPrefs(email,this);
+                PreferenceUtils.savePassToPrefs(pass,this);
+            }
+            else{
+                PreferenceUtils.saveEmailtoPrefs(email,this);
+                PreferenceUtils.savePassToPrefs(pass,this);
+                PreferenceUtils.saveRememberToPrefs("false",this);
             }
 
 
-            PreferenceUtils.saveEmailtoPrefs(email,this);
-            PreferenceUtils.savePassToPrefs(pass,this);
             PreferenceUtils.saveWelcomeName(firstSecond,this);
-            PreferenceUtils.saveRememberToPrefs("false",this);
+
             Intent intent=new Intent(this, home.class);
             startActivity(intent);
 
@@ -141,4 +143,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClickSignUpButton(View view) {
     }
+
+
 }
