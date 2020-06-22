@@ -63,6 +63,8 @@ public class sqlInteractions {
             e.printStackTrace();
         }
     }
+
+
     public static String getUserDetail(String userID,String userDetail){
         Connection connection = null;
         try {
@@ -89,6 +91,7 @@ public class sqlInteractions {
         }
         return null;
     }
+
     public static void deleteUser(String UserId){
         Connection connection = null;
         try {
@@ -110,6 +113,7 @@ public class sqlInteractions {
             e.printStackTrace();
         }
     }
+
     public static void changeUserDetail(String UserId,String userDetail,String newValue){
         Connection connection = null;
         try {
@@ -144,7 +148,8 @@ public class sqlInteractions {
             }
         }
     }
-    private static String getSHA256Hash(String data) {
+
+    public static String getSHA256Hash(String data) {
         MessageDigest md = null;
         try {
             md = MessageDigest.getInstance( "SHA-256" );
@@ -395,6 +400,76 @@ public class sqlInteractions {
 
     }
 
+    public static Boolean CheckLogIn (String userID,String pass){
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT Hash FROM alexandr_usersEnter.personalDetails" +
+                                " where UserId ="+ "\""+userID+"\"" +";";
+
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<String> result = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getString("Hash"));
+            }
+            connection.close();
+
+            if (result.get(0).equals(pass)){
+                System.out.println("Pass correct");
+                return true;
+            }
+            else{
+                System.out.println("Pass incorrect");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public static ArrayList<String> getFirstSecondName (String userID){
+
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://172.93.133.103/alexandr_salonsSpecial?useUnicode=yes&characterEncoding=UTF-8", "alexandr_NikLeo", "(IronBallsBISM)");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlSatatement = "SELECT Name, secondName FROM alexandr_usersEnter.personalDetails" +
+                " where UserId ="+ "\""+userID+"\"" +";";
+
+        ArrayList<String> result = null;
+
+        try (PreparedStatement statement = connection.prepareStatement((sqlSatatement))) {
+            ResultSet resultSet = statement.executeQuery();
+            result = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(resultSet.getString("Name"));
+                result.add(resultSet.getString("secondName"));
+            }
+            connection.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 
     public static ArrayList<String> getTreatmentsNames(){
         Connection connection = null;

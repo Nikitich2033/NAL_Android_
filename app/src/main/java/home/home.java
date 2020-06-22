@@ -1,17 +1,20 @@
 package home;
 
+
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nal.R;
 
+import Constants.PreferenceUtils;
 import makeAppointment.makeAppointment;
 import showUserAppointments.SeeMyAppointments;
-
 
 public class home extends AppCompatActivity {
 
@@ -23,6 +26,10 @@ public class home extends AppCompatActivity {
         if(actionBar!=null){
             actionBar.hide();
         }
+        Intent start = getIntent();
+        TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
+        myAwesomeTextView.setText("Добрый день, " + PreferenceUtils.getWelcomeNameFromPrefs(this));
+
     }
 
     public void onClickAccountSettings(View view) {
@@ -37,4 +44,6 @@ public class home extends AppCompatActivity {
         Intent intent=new Intent(this, makeAppointment.class);
         startActivity(intent);
     }
+
+
 }
