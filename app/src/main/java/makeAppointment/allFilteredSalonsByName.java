@@ -35,12 +35,12 @@ public class allFilteredSalonsByName extends AppCompatActivity {
         }
         progressBar1=findViewById(R.id.progressBar1);
         RVfoundSalonsByName=findViewById(R.id.RVfoundSalonsByTag);
+        new getIDsAsyncAndObjects().execute();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        new getIDsAsyncAndObjects().execute();
     }
 
     @Override
