@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nal.R;
 
+
 import Constants.PreferenceUtils;
 import makeAppointment.makeAppointment;
 import showUserAppointments.SeeMyAppointments;
@@ -26,11 +27,16 @@ public class home extends AppCompatActivity {
         if(actionBar!=null){
             actionBar.hide();
         }
-        Intent start = getIntent();
+
         TextView myAwesomeTextView = findViewById(R.id.welcomeTextView);
         myAwesomeTextView.setText("Добрый день, " + PreferenceUtils.getWelcomeNameFromPrefs(this));
 
+
+
     }
+
+
+
 
     public void onClickAccountSettings(View view) {
     }
@@ -45,5 +51,12 @@ public class home extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+           PreferenceUtils.clearPrefs(this);
+        }
+    }
 }

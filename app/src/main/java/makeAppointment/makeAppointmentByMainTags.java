@@ -26,6 +26,7 @@ import com.example.nal.R;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import Constants.PreferenceUtils;
 import home.home;
 import mySQLInteractions.sqlInteractions;
 
@@ -203,5 +204,14 @@ public class makeAppointmentByMainTags extends AppCompatActivity {
         SVtreatments.clearFocus();
         LVmaintags.setVisibility(View.VISIBLE);
         LVallTreatments.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
     }
 }

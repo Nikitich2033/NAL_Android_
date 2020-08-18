@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import Constants.PreferenceUtils;
 import makeAppointment.SalonOptions;
 import com.example.nal.R;
 
@@ -67,9 +68,9 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         LVMasters=findViewById(R.id.LVMasters);
         progressBar6=findViewById(R.id.progressBar6);
         new getMastersAsync().execute();
-        this.year= Calendar.getInstance().get(Calendar.YEAR);
-        this.month=Calendar.getInstance().get(Calendar.MONTH);
-        this.day=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        year= Calendar.getInstance().get(Calendar.YEAR);
+        month=Calendar.getInstance().get(Calendar.MONTH);
+        day=Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
     }
     class listviewmasterAdapter extends ArrayAdapter<Master> {
@@ -103,23 +104,23 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
         DatePickerDialog datePickerDialog=new DatePickerDialog(
                 this,
                 this,
-                this.year,
-                this.month,
-                this.day
+                year,
+                month,
+                day
         );
         datePickerDialog.show();
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        this.day=dayOfMonth;
-        this.month=month+1;
-        this.year=year;
+        day=dayOfMonth;
+        checkMasters.month =month+1;
+        checkMasters.year =year;
         Intent intent=new Intent(this,checkTimeAndChooseComplete.class);
         intent.putExtra("SalonId",SalonId);
         intent.putExtra("ServiceId",ServiceId);
         intent.putExtra("MasterId",MasterId);
-        intent.putExtra("checkDate",String.valueOf(this.year+"-"+this.month+"-"+this.day));
+        intent.putExtra("checkDate", checkMasters.year + "-" + checkMasters.month + "-" + day);
         intent.putExtra("treatmentDuration",treatmentDuration);
         intent.putExtra("treatmentName",treatmentName);
         startActivity(intent);
@@ -142,4 +143,14 @@ public class checkMasters extends AppCompatActivity implements DatePickerDialog.
 
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.clearPrefs(this);
+        }
+    }
+
 }

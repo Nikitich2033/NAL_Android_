@@ -1,5 +1,6 @@
 package showUserAppointments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,8 +17,13 @@ import com.example.nal.R;
 
 import java.util.ArrayList;
 
+import Constants.PreferenceUtils;
 import home.home;
 import mySQLInteractions.sqlInteractions;
+
+import Constants.PreferenceUtils;
+
+import static Constants.PreferenceUtils.getEmailFromPrefs;
 
 public class PersonalAppointmentsList extends AppCompatActivity {
 
@@ -25,7 +31,7 @@ public class PersonalAppointmentsList extends AppCompatActivity {
     public static RecyclerView.Adapter appointmentsAdapter;
     private RecyclerView.LayoutManager LayoutManager;
     private ArrayList<AppointmentObject> appointmentList;
-    private String UserID = "nikitalyakhovoy@gmail.com";
+    private String UserID ;
     private ProgressBar progressBar1;
     private int timeValue;
 
@@ -62,6 +68,7 @@ public class PersonalAppointmentsList extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             Intent intent=getIntent();
+            UserID = intent.getStringExtra("ID");
             timeValue = intent.getIntExtra("timeValue",2);
             if (timeValue == 0) {
                 appointmentList = sqlInteractions.getUserFutureAppointments(UserID);
@@ -90,4 +97,16 @@ public class PersonalAppointmentsList extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("DESTROYED");
+        if (PreferenceUtils.getRememberFromPrefs(this).equals("false")) {
+            PreferenceUtils.saveWelcomeName(null, this);
+            PreferenceUtils.saveEmailtoPrefs(null, this);
+            PreferenceUtils.savePassToPrefs(null, this);
+        }
+    }
+
 }
